@@ -52,6 +52,9 @@ const BusList: React.FC<BusListProps> = ({ data, favorites, onToggleFavorite }) 
   }
 
   const [results, setResults] = useState([...sortedKeys]);
+  useEffect(() => {
+    setResults(sortedKeys);
+  }, [sortedKeys]);
   return (
     <>
       <IonSearchbar onIonInput={handleInput}></IonSearchbar>
