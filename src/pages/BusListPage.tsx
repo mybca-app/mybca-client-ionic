@@ -12,6 +12,7 @@ import {
   IonPopover,
   IonRefresher,
   IonRefresherContent,
+  IonSearchbar,
   IonSpinner,
   IonText,
   IonTitle,
@@ -41,35 +42,48 @@ const BusList: React.FC<BusListProps> = ({ data, favorites, onToggleFavorite }) 
     if (!aFav && bFav) return 1;
     return a.localeCompare(b);
   });
-  return (
-    <IonList>
-      {sortedKeys.map((key) => {
-        const isFavorite = favorites.includes(key);
 
-        return (
-          <IonItem key={key}>
-            <IonButton
-              slot="start"
-              color={isFavorite ? "warning" : "medium"}
-              fill="clear"
-              size="default"
-              onClick={() => onToggleFavorite(key)}
-            >
-              <IonIcon slot="icon-only" icon={isFavorite ? star : starOutline} />
-            </IonButton>
-            <IonLabel>
-              <h2>{key}</h2>
-              <p>{data[key] ? "Arrived at BCA" : "Not at BCA"}</p>
-            </IonLabel>
-            {data[key] && (
-              <IonChip slot="end" color="primary">
-                {data[key]}
-              </IonChip>
-            )}
-          </IonItem>
-        );
-      })}
-    </IonList>
+  const handleInput = (event: Event) => {
+    let query = "";
+    const target = event.target as HTMLIonSearchbarElement;
+    if (target) query = target.value!.toLowerCase();
+
+    setResults(sortedKeys.filter((d) => d.toLowerCase().indexOf(query) > -1));
+  }
+
+  const [results, setResults] = useState([...sortedKeys]);
+  return (
+    <>
+      <IonSearchbar onIonInput={handleInput}></IonSearchbar>
+      <IonList>
+        {results.map((key) => {
+          const isFavorite = favorites.includes(key);
+
+          return (
+            <IonItem key={key}>
+              <IonButton
+                slot="start"
+                color={isFavorite ? "warning" : "medium"}
+                fill="clear"
+                size="default"
+                onClick={() => onToggleFavorite(key)}
+              >
+                <IonIcon slot="icon-only" icon={isFavorite ? star : starOutline} />
+              </IonButton>
+              <IonLabel>
+                <h2>{key}</h2>
+                <p>{data[key] ? "Arrived at BCA" : "Not at BCA"}</p>
+              </IonLabel>
+              {data[key] && (
+                <IonChip slot="end" color="primary">
+                  {data[key]}
+                </IonChip>
+              )}
+            </IonItem>
+          );
+        })}
+      </IonList>
+    </>
   );
 };
 
