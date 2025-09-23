@@ -34,6 +34,9 @@ const BUS_SHEET_URL = "https://docs.google.com/spreadsheets/u/1/d/1S5v7kTbSiqV8G
 const FAVORITE_BUS_PREFERENCES_KEY = "mybca_favorite_bus";
 
 const BusList: React.FC<BusListProps> = ({ data, favorites, onToggleFavorite }) => {
+  const [query, setQuery] = useState("");
+
+  // sorted list, favorites first
   const sortedKeys = Object.keys(data).sort((a, b) => {
     const aFav = favorites.includes(a);
     const bFav = favorites.includes(b);
@@ -43,18 +46,15 @@ const BusList: React.FC<BusListProps> = ({ data, favorites, onToggleFavorite }) 
     return a.localeCompare(b);
   });
 
-  const handleInput = (event: Event) => {
-    let query = "";
-    const target = event.target as HTMLIonSearchbarElement;
-    if (target) query = target.value!.toLowerCase();
+  const results = sortedKeys.filter((key) =>
+    key.toLowerCase().includes(query.toLowerCase())
+  );
 
-    setResults(sortedKeys.filter((d) => d.toLowerCase().indexOf(query) > -1));
-  }
+  const handleInput = (event: CustomEvent) => {
+    const value = (event.target as HTMLIonSearchbarElement).value ?? "";
+    setQuery(value);
+  };
 
-  const [results, setResults] = useState([...sortedKeys]);
-  useEffect(() => {
-    setResults(sortedKeys);
-  }, [sortedKeys]);
   return (
     <>
       <IonSearchbar onIonInput={handleInput}></IonSearchbar>
