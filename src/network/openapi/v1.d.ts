@@ -103,9 +103,9 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "text/plain": components["schemas"]["MenuWeek"];
-                        "application/json": components["schemas"]["MenuWeek"];
-                        "text/json": components["schemas"]["MenuWeek"];
+                        "text/plain": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
+                        "application/json": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
+                        "text/json": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
                     };
                 };
             };
@@ -141,9 +141,9 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "text/plain": components["schemas"]["MenuDay"];
-                        "application/json": components["schemas"]["MenuDay"];
-                        "text/json": components["schemas"]["MenuDay"];
+                        "text/plain": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
+                        "application/json": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
+                        "text/json": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
                     };
                 };
             };
@@ -186,6 +186,10 @@ export interface components {
             date: string | null;
             menuItems: components["schemas"]["MenuItem"][];
         };
+        MenuDay2: {
+            date: string | null;
+            menuItems: components["schemas"]["MenuItem"][];
+        } | null;
         MenuItem: {
             /** Format: date-time */
             date: string | null;
@@ -204,6 +208,16 @@ export interface components {
             startDate: string | null;
             displayName: string | null;
             days: components["schemas"]["MenuDay"][];
+        } | null;
+        NutrisliceApiResponseOfMenuDay: {
+            data: components["schemas"]["MenuDay2"];
+            /** Format: date-time */
+            expiry: string | null;
+        };
+        NutrisliceApiResponseOfMenuWeek: {
+            data: components["schemas"]["MenuWeek"];
+            /** Format: date-time */
+            expiry: string | null;
         };
     };
     responses: never;
