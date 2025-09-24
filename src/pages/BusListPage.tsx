@@ -1,7 +1,7 @@
+import { Preferences } from '@capacitor/preferences';
 import {
   IonButton,
   IonButtons,
-  IonChip,
   IonContent,
   IonHeader,
   IonIcon,
@@ -12,83 +12,19 @@ import {
   IonPopover,
   IonRefresher,
   IonRefresherContent,
-  IonSearchbar,
   IonSpinner,
   IonText,
   IonTitle,
   IonToolbar,
   RefresherCustomEvent
 } from '@ionic/react';
-import { ellipsisVertical, informationCircleOutline, linkOutline, star, starOutline, timeOutline } from 'ionicons/icons';
-import { $api } from '../network/network';
+import { informationCircleOutline, linkOutline, timeOutline } from 'ionicons/icons';
 import { useEffect, useState } from 'react';
-import { Preferences } from '@capacitor/preferences';
-
-type BusListProps = {
-  data: Record<string, any>;
-  favorites: string[];
-  onToggleFavorite: (bus: string) => void;
-};
+import { $api } from '../network/client';
+import { BusList } from '../components/buses/BusList';
+import { FAVORITE_BUS_PREFERENCES_KEY } from '../storage/favorite_bus';
 
 const BUS_SHEET_URL = "https://docs.google.com/spreadsheets/u/1/d/1S5v7kTbSiqV8GottWVi5tzpqLdTrEgWEY4ND4zvyV3o/htmlview#gid=0";
-const FAVORITE_BUS_PREFERENCES_KEY = "mybca_favorite_bus";
-
-const BusList: React.FC<BusListProps> = ({ data, favorites, onToggleFavorite }) => {
-  const [query, setQuery] = useState("");
-
-  // sorted list, favorites first
-  const sortedKeys = Object.keys(data).sort((a, b) => {
-    const aFav = favorites.includes(a);
-    const bFav = favorites.includes(b);
-
-    if (aFav && !bFav) return -1;
-    if (!aFav && bFav) return 1;
-    return a.localeCompare(b);
-  });
-
-  const results = sortedKeys.filter((key) =>
-    key.toLowerCase().includes(query.toLowerCase())
-  );
-
-  const handleInput = (event: CustomEvent) => {
-    const value = (event.target as HTMLIonSearchbarElement).value ?? "";
-    setQuery(value);
-  };
-
-  return (
-    <>
-      <IonSearchbar onIonInput={handleInput}></IonSearchbar>
-      <IonList>
-        {results.map((key) => {
-          const isFavorite = favorites.includes(key);
-
-          return (
-            <IonItem key={key}>
-              <IonButton
-                slot="start"
-                color={isFavorite ? "warning" : "medium"}
-                fill="clear"
-                size="default"
-                onClick={() => onToggleFavorite(key)}
-              >
-                <IonIcon slot="icon-only" icon={isFavorite ? star : starOutline} />
-              </IonButton>
-              <IonLabel>
-                <h2>{key}</h2>
-                <p>{data[key] ? "Arrived at BCA" : "Not at BCA"}</p>
-              </IonLabel>
-              {data[key] && (
-                <IonChip slot="end" color="primary">
-                  {data[key]}
-                </IonChip>
-              )}
-            </IonItem>
-          );
-        })}
-      </IonList>
-    </>
-  );
-};
 
 const BusListPage: React.FC = () => {
   const { data, error, isLoading, refetch } = $api.useQuery("get", "/api/bus/List", {}, {
@@ -97,6 +33,7 @@ const BusListPage: React.FC = () => {
 
   const [favorites, setFavorites] = useState<string[]>([]);
   const [loaded, setLoaded] = useState(false);
+
   useEffect(() => {
     const loadFavorites = async () => {
       const { value } = await Preferences.get({ key: FAVORITE_BUS_PREFERENCES_KEY });
@@ -126,36 +63,30 @@ const BusListPage: React.FC = () => {
     );
   };
 
-  const ToolbarButtons: React.FC = () => {
-    return (
-      <IonButtons slot="primary">
-        <IonButton id="buslist-options-menu-trigger">
-          <IonIcon slot="icon-only" ios={informationCircleOutline} md={informationCircleOutline} />
-        </IonButton>
-        <IonPopover trigger="buslist-options-menu-trigger" triggerAction="click">
-          <IonList>
-            {data?.expiry && (
-              <IonItem>
-                <IonIcon slot="start" icon={timeOutline} />
-                <IonLabel>Expires at {new Date(data.expiry).toLocaleTimeString()}</IonLabel>
-              </IonItem>
-            )}
-            <IonItem href={BUS_SHEET_URL} target="_blank">
-              <IonIcon slot="start" icon={linkOutline} />
-              <IonLabel>View spreadsheet</IonLabel>
-            </IonItem>
-          </IonList>
-        </IonPopover>
-      </IonButtons>
-    );
-  }
-
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonTitle>Buses</IonTitle>
-          <ToolbarButtons />
+          <IonButtons slot="end">
+            <IonButton id="buslist-options-menu-trigger">
+              <IonIcon slot="icon-only" ios={informationCircleOutline} md={informationCircleOutline} />
+            </IonButton>
+            <IonPopover trigger="buslist-options-menu-trigger" triggerAction="click">
+              <IonList>
+                {data?.expiry && (
+                  <IonItem>
+                    <IonIcon slot="start" icon={timeOutline} />
+                    <IonLabel>Expires at {new Date(data.expiry).toLocaleTimeString()}</IonLabel>
+                  </IonItem>
+                )}
+                <IonItem href={BUS_SHEET_URL} target="_blank">
+                  <IonIcon slot="start" icon={linkOutline} />
+                  <IonLabel>View spreadsheet</IonLabel>
+                </IonItem>
+              </IonList>
+            </IonPopover>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
@@ -190,9 +121,7 @@ const BusListPage: React.FC = () => {
         )}
 
         {data && (
-          <>
-            <BusList data={data.data} favorites={favorites} onToggleFavorite={toggleFavorite} />
-          </>
+          <BusList data={data.data} favorites={favorites} onToggleFavorite={toggleFavorite} />
         )}
       </IonContent>
     </IonPage>
