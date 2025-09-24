@@ -1,93 +1,23 @@
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonIcon, IonList, IonPage, IonText, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import { IonContent, IonHeader, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar, RefresherCustomEvent } from '@ionic/react';
+import { BusCard } from '../components/home/BusCard';
+import { LunchCard } from '../components/home/LunchCard';
 import { $api } from '../network/client';
-import { arrowForward } from 'ionicons/icons';
-import { Preferences } from '@capacitor/preferences';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FAVORITE_BUS_PREFERENCES_KEY } from '../storage/favorite_bus';
-import { BusListEntry } from '../components/buses/BusListEntry';
-
-const BusCard: React.FC = () => {
-  const { data, error, isLoading, refetch } = $api.useQuery("get", "/api/bus/List");
-  const [starredBuses, setStarredBuses] = useState<string[]>([]);
-  useEffect(() => {
-    (async () => {
-      const { value } = await Preferences.get({ key: FAVORITE_BUS_PREFERENCES_KEY });
-      if (value) {
-        setStarredBuses(JSON.parse(value));
-      }
-    })();
-  }, []);
-
-  return (
-    <IonCard>
-      <IonCardHeader>
-        <IonCardTitle>Starred buses</IonCardTitle>
-      </IonCardHeader>
-
-      <IonCardContent>
-        {starredBuses.length === 0 ? (
-          <IonText>
-            You haven't starred any buses yet. Star your favorite buses on the <Link to="/buses/list">Buses</Link>
-            &nbsp;page to get quick access to them when you open the myBCA app.
-          </IonText>
-        ) : (
-          <IonList inset={false} style={{ "background": "transparent" }}>
-            {Object.keys(data?.data || {}).filter(k => starredBuses.includes(k)).map(town => (
-              <BusListEntry
-                town={town}
-                position={data?.data[town] ?? null}
-                standalone
-              />
-            ))}
-          </IonList>
-        )}
-      </IonCardContent>
-
-      <IonButton fill="clear" routerLink="/buses/list">
-        Go to buses
-        <IonIcon icon={arrowForward} slot="end" />
-      </IonButton>
-    </IonCard>
-  )
-}
-
-const LunchCard: React.FC = () => {
-  const { data, error, isLoading, refetch } = $api.useQuery("get", "/api/lunch/Day");
-
-  return (
-    <IonCard>
-      <IonCardHeader>
-        <IonCardTitle>Lunch menu</IonCardTitle>
-        <IonCardSubtitle>{new Date().toLocaleDateString()}</IonCardSubtitle>
-      </IonCardHeader>
-      <IonCardContent>
-        {data?.data?.menuItems.length === 0 ? (
-          <IonText>There is no lunch today.</IonText>
-        ) : (
-          data?.data?.menuItems.map((item, index) => {
-            if (item.isSectionTitle || item.isStationHeader) {
-              return (
-                <IonText key={index}>
-                  <h2></h2>
-                </IonText>
-              )
-            } else {
-              const style = item.category !== "entree" && item.category !== "meat"
-                ? { marginLeft: "20px" }
-                : {};
-
-              return <li key={index} style={style}><IonText>{item.food.name}</IonText></li>
-            }
-          })
-        )}
-      </IonCardContent>
-    </IonCard>
-  )
-}
 
 const HomePage: React.FC = () => {
+  const {
+    data: busData,
+    error: busError,
+    isLoading: busIsLoading,
+    refetch: busRefetch,
+  } = $api.useQuery("get", "/api/bus/List");
+
+  const {
+    data: lunchData,
+    error: lunchError,
+    isLoading: lunchIsLoading,
+    refetch: lunchRefetch,
+  } = $api.useQuery("get", "/api/lunch/Day");
+
   return (
     <IonPage>
       <IonHeader>
@@ -101,8 +31,16 @@ const HomePage: React.FC = () => {
             <IonTitle size="large">myBCA</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <BusCard />
-        <LunchCard />
+
+        <IonRefresher slot="fixed" onIonRefresh={async (event: RefresherCustomEvent) => {
+          await busRefetch();
+          await lunchRefetch();
+          event.detail.complete();
+        }}>
+          <IonRefresherContent></IonRefresherContent>
+        </IonRefresher>
+        <BusCard busData={busData?.data ?? {}} isLoading={busIsLoading} error={busError} />
+        <LunchCard lunchData={lunchData?.data} isLoading={lunchIsLoading} error={lunchError} />
       </IonContent>
     </IonPage>
   );

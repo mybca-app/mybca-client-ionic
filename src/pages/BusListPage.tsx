@@ -22,7 +22,7 @@ import { informationCircleOutline, linkOutline, timeOutline } from 'ionicons/ico
 import { useEffect, useState } from 'react';
 import { $api } from '../network/client';
 import { BusList } from '../components/buses/BusList';
-import { FAVORITE_BUS_PREFERENCES_KEY } from '../storage/favorite_bus';
+import { FAVORITE_BUS_PREFERENCES_KEY } from '../storage/favoriteBus';
 
 const BUS_SHEET_URL = "https://docs.google.com/spreadsheets/u/1/d/1S5v7kTbSiqV8GottWVi5tzpqLdTrEgWEY4ND4zvyV3o/htmlview#gid=0";
 
