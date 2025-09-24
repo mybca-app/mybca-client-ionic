@@ -65,9 +65,9 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "text/plain": components["schemas"]["Link"][];
-                        "application/json": components["schemas"]["Link"][];
-                        "text/json": components["schemas"]["Link"][];
+                        "text/plain": components["schemas"]["LinkApiResponse"];
+                        "application/json": components["schemas"]["LinkApiResponse"];
+                        "text/json": components["schemas"]["LinkApiResponse"];
                     };
                 };
             };
@@ -181,6 +181,11 @@ export interface components {
             name: string;
             /** Format: uri */
             target: string;
+        };
+        LinkApiResponse: {
+            /** Format: int32 */
+            count: number;
+            data: components["schemas"]["Link"][];
         };
         MenuDay: {
             date: string | null;
