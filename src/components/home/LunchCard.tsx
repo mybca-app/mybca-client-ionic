@@ -1,4 +1,4 @@
-import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonText, IonSpinner } from "@ionic/react";
+import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonText, IonSpinner, IonLabel, IonList, IonItem, IonItemDivider } from "@ionic/react";
 import { components } from "../../network/openapi/v1";
 
 type LunchCardProps = {
@@ -6,6 +6,9 @@ type LunchCardProps = {
   isLoading: boolean;
   error: Error | null;
 };
+
+// Milk/Condiments; Deli; Sides
+const UNWANTED_SECTIONS = [3676, 3088, 3090];
 
 export const LunchCard: React.FC<LunchCardProps> = ({ lunchData, isLoading, error }) => {
   return (
@@ -32,26 +35,36 @@ export const LunchCard: React.FC<LunchCardProps> = ({ lunchData, isLoading, erro
           </div>
         )}
 
-        {lunchData && (lunchData.menuItems.length === 0 ? (
-          <IonText>There is no lunch today.</IonText>
-        ) : (
-          lunchData.menuItems.map((item, index) => {
-            if (item.isSectionTitle || item.isStationHeader) {
-              return (
-                <IonText key={index}>
-                  <h2></h2>
-                </IonText>
-              )
-            } else {
-              const style = item.category !== "entree" && item.category !== "meat"
-                ? { marginLeft: "20px" }
-                : {};
+        {lunchData && (
+          lunchData.menuItems.length === 0 ? (
+            <IonText>There is no lunch today.</IonText>
+          ) : (
+            <IonList style={{ "background": "transparent" }}>
+              {lunchData.menuItems.filter(item => !UNWANTED_SECTIONS.includes(item.stationID)).map((item, index) => {
+                if (item.isSectionTitle || item.isStationHeader) {
+                  return (
+                    <IonItemDivider className="ion-no-padding ion-padding-top" style={{ "--background": "transparent" }}>
+                      <IonLabel>{item.text}</IonLabel>
+                    </IonItemDivider>
+                  );
+                } else {
+                  const style = item.category !== "entree" && item.category !== "meat"
+                    ? { marginLeft: "20px" }
+                    : {};
 
-              return <li key={index} style={style}><IonText>{item.food.name}</IonText></li>
-            }
-          })
-        ))}
+                  return (
+                    <IonItem key={index} className="ion-no-padding" style={{ "--background": "transparent" }}>
+                      <IonLabel>
+                        {item.food.name}
+                      </IonLabel>
+                    </IonItem>
+                  );
+                }
+              })}
+            </IonList>
+          )
+        )}
       </IonCardContent>
     </IonCard>
-  )
-}
+  );
+};
