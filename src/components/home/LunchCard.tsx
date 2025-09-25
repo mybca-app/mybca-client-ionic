@@ -48,13 +48,11 @@ export const LunchCard: React.FC<LunchCardProps> = ({ lunchData, isLoading, erro
                     </IonItemDivider>
                   );
                 } else {
-                  const style = item.category !== "entree" && item.category !== "meat"
-                    ? { marginLeft: "20px" }
-                    : {};
+                  const isInsignificantDish = item.category !== "entree" && item.category !== "meat";
 
                   return (
                     <IonItem key={index} className="ion-no-padding" style={{ "--background": "transparent" }}>
-                      <IonLabel>
+                      <IonLabel color={isInsignificantDish ? "medium" : ""}>
                         {item.food.name}
                       </IonLabel>
                     </IonItem>
