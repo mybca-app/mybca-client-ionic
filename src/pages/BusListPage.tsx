@@ -70,7 +70,7 @@ const BusListPage: React.FC = () => {
           <IonTitle>Buses</IonTitle>
           <IonButtons slot="end">
             <IonButton id="buslist-options-menu-trigger">
-              <IonIcon slot="icon-only" ios={informationCircleOutline} md={informationCircleOutline} />
+              <IonIcon slot="icon-only" icon={informationCircleOutline} />
             </IonButton>
             <IonPopover trigger="buslist-options-menu-trigger" triggerAction="click">
               <IonList>
@@ -115,7 +115,11 @@ const BusListPage: React.FC = () => {
         {error && (
           <div className="ion-text-center ion-padding">
             <IonText color="danger">
-              <p>Failed to load buses. Please try again later.</p>
+              <p>
+                Failed to load buses. Click on the
+                <IonIcon icon={informationCircleOutline} />
+                button to view the bus spreadsheet directly.
+              </p>
             </IonText>
           </div>
         )}

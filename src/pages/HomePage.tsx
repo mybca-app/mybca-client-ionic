@@ -3,7 +3,6 @@ import { BusCard } from '../components/home/BusCard';
 import { LunchCard } from '../components/home/LunchCard';
 import { $api } from '../network/client';
 import { LinksCard } from '../components/home/LinksCard';
-import { Haptics, ImpactStyle } from '@capacitor/haptics';
 
 const HomePage: React.FC = () => {
   const {

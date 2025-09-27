@@ -10,7 +10,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { bus, ellipse, home, square, triangle } from 'ionicons/icons';
+import { bus, home } from 'ionicons/icons';
 import HomePage from './pages/HomePage';
 import BusListPage from './pages/BusListPage';
 
@@ -41,8 +41,6 @@ import '@ionic/react/css/display.css';
 /* import '@ionic/react/css/palettes/dark.class.css'; */
 import '@ionic/react/css/palettes/dark.system.css';
 
-/* Theme variables */
-import './theme/variables.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 setupIonicReact();

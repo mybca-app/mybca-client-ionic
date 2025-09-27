@@ -3,7 +3,7 @@ import { useState } from "react";
 import { BusListEntry } from "./BusListEntry";
 
 type BusListProps = {
-  data: Record<string, any>;
+  data: Record<string, string>;
   favorites: string[];
   onToggleFavorite: (bus: string) => void;
 };
