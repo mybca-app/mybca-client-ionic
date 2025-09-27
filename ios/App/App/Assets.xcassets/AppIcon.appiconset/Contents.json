@@ -1,7 +1,31 @@
 {
   "images" : [
     {
-      "filename" : "AppIcon-512@2x.png",
+      "filename" : "2.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "1.png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "tinted"
+        }
+      ],
+      "filename" : "myBCA Mobile Icons.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"

@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'mybca-client-ionic',
+  appId: 'link.mybca.ionicclient',
+  appName: 'myBCA',
   webDir: 'dist'
 };
 
