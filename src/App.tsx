@@ -10,7 +10,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { bus, home } from 'ionicons/icons';
+import { bus, calendar, home } from 'ionicons/icons';
 import HomePage from './pages/HomePage';
 import BusListPage from './pages/BusListPage';
 
@@ -42,6 +42,7 @@ import '@ionic/react/css/display.css';
 import '@ionic/react/css/palettes/dark.system.css';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import EventsPage from './pages/EventsPage';
 
 setupIonicReact();
 
@@ -59,6 +60,9 @@ const App: React.FC = () => (
             <Route exact path="/buses/list">
               <BusListPage />
             </Route>
+            <Route exact path="/events/list">
+              <EventsPage />
+            </Route>
             <Route exact path="/">
               <Redirect to="/home" />
             </Route>
@@ -71,6 +75,10 @@ const App: React.FC = () => (
             <IonTabButton tab="buslist" href="/buses/list">
               <IonIcon aria-hidden="true" icon={bus} />
               <IonLabel>Buses</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="events" href="/events/list">
+              <IonIcon aria-hidden="true" icon={calendar} />
+              <IonLabel>Events</IonLabel>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>

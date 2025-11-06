@@ -3,6 +3,10 @@ import { BusCard } from '../components/home/BusCard';
 import { LunchCard } from '../components/home/LunchCard';
 import { $api } from '../network/client';
 import { LinksCard } from '../components/home/LinksCard';
+import { useQuery } from '@tanstack/react-query';
+import { pb } from '../network/nexusPocketbase';
+import { EventsCard } from '../components/home/EventsCard';
+import { Event } from '../network/pocketbase/pocketbase';
 
 const HomePage: React.FC = () => {
   const {
@@ -26,6 +30,20 @@ const HomePage: React.FC = () => {
     refetch: linksRefetch
   } = $api.useQuery("get", "/api/links");
 
+  const {
+    data: eventsData,
+    error: eventsError,
+    isLoading: eventsIsLoading,
+    refetch: eventsRefetch
+  } = useQuery({
+    queryKey: ["events-homepage-card"],
+    queryFn: () => pb.collection("events").getList(1, 3, {
+      expand: "organization",
+      filter: "eventTime >= @now",
+      sort: "eventTime"
+    }),
+  });
+
   return (
     <IonPage>
       <IonHeader>
@@ -44,11 +62,13 @@ const HomePage: React.FC = () => {
           await busRefetch();
           await lunchRefetch();
           await linksRefetch();
+          await eventsRefetch();
           event.detail.complete();
         }}>
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
         <BusCard busData={busData?.data ?? {}} isLoading={busIsLoading} error={busError} />
+        <EventsCard eventData={(eventsData?.items as unknown[] as Event[]) ?? []} isLoading={eventsIsLoading} error={eventsError} />
         <LunchCard lunchData={lunchData?.data} isLoading={lunchIsLoading} error={lunchError} />
         <LinksCard linksData={linksData?.data ?? []} isLoading={linksIsLoading} error={linksError} />
       </IonContent>
