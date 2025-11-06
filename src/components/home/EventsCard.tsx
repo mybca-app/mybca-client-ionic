@@ -47,7 +47,7 @@ export const EventsCard: React.FC<EventsCardProps> = ({
         </div>
       )}
 
-      {eventData && (
+      {eventData && !isLoading && !error && (
         <IonCardContent>
           {eventData.length === 0 ? (
             <IonText>There are no upcoming events.</IonText>
