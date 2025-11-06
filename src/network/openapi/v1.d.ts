@@ -4,232 +4,232 @@
  */
 
 export interface paths {
-    "/api/bus/List": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Retrieves a map of each bus to its position */
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description OK */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "text/plain": components["schemas"]["BusApiResponse"];
-                        "application/json": components["schemas"]["BusApiResponse"];
-                        "text/json": components["schemas"]["BusApiResponse"];
-                    };
-                };
-            };
-        };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+  "/api/bus/List": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/api/links": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    /** Retrieves a map of each bus to its position */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description OK */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            "text/plain": components["schemas"]["BusApiResponse"];
+            "application/json": components["schemas"]["BusApiResponse"];
+            "text/json": components["schemas"]["BusApiResponse"];
+          };
         };
-        /** Retrieves a list of quick links to key BCA services */
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description OK */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "text/plain": components["schemas"]["LinkApiResponse"];
-                        "application/json": components["schemas"]["LinkApiResponse"];
-                        "text/json": components["schemas"]["LinkApiResponse"];
-                    };
-                };
-            };
-        };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+      };
     };
-    "/api/lunch/Week": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Retrieves the lunch menu for the week */
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description OK */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "text/plain": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
-                        "application/json": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
-                        "text/json": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
-                    };
-                };
-            };
-        };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/links": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/api/lunch/Day": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    /** Retrieves a list of quick links to key BCA services */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description OK */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            "text/plain": components["schemas"]["LinkApiResponse"];
+            "application/json": components["schemas"]["LinkApiResponse"];
+            "text/json": components["schemas"]["LinkApiResponse"];
+          };
         };
-        /** Retrieves the lunch menu for the day */
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description OK */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "text/plain": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
-                        "application/json": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
-                        "text/json": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
-                    };
-                };
-            };
-        };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+      };
     };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/lunch/Week": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Retrieves the lunch menu for the week */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description OK */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            "text/plain": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
+            "application/json": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
+            "text/json": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/lunch/Day": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Retrieves the lunch menu for the day */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description OK */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            "text/plain": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
+            "application/json": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
+            "text/json": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
-    schemas: {
-        BusApiResponse: {
-            /** Format: int32 */
-            count: number;
-            data: {
-                [key: string]: string;
-            };
-            /** Format: date-time */
-            expiry: string | null;
-        };
-        FoodItem: {
-            /** Format: int32 */
-            id: number;
-            name: string | null;
-            description: string | null;
-            subtext: string | null;
-            imageUrl: string | null;
-        };
-        Link: {
-            name: string;
-            /** Format: uri */
-            target: string;
-        };
-        LinkApiResponse: {
-            /** Format: int32 */
-            count: number;
-            data: components["schemas"]["Link"][];
-        };
-        MenuDay: {
-            date: string | null;
-            menuItems: components["schemas"]["MenuItem"][];
-        };
-        MenuDay2: {
-            date: string | null;
-            menuItems: components["schemas"]["MenuItem"][];
-        } | null;
-        MenuItem: {
-            /** Format: date-time */
-            date: string | null;
-            /** Format: int32 */
-            position: number;
-            isSectionTitle: boolean;
-            text: string | null;
-            food: components["schemas"]["FoodItem"];
-            /** Format: uint32 */
-            stationID: number;
-            isStationHeader: boolean;
-            image: string | null;
-            category: string | null;
-        };
-        MenuWeek: {
-            startDate: string | null;
-            displayName: string | null;
-            days: components["schemas"]["MenuDay"][];
-        } | null;
-        NutrisliceApiResponseOfMenuDay: {
-            data: components["schemas"]["MenuDay2"];
-            /** Format: date-time */
-            expiry: string | null;
-        };
-        NutrisliceApiResponseOfMenuWeek: {
-            data: components["schemas"]["MenuWeek"];
-            /** Format: date-time */
-            expiry: string | null;
-        };
+  schemas: {
+    BusApiResponse: {
+      /** Format: int32 */
+      count: number;
+      data: {
+        [key: string]: string;
+      };
+      /** Format: date-time */
+      expiry: string | null;
     };
-    responses: never;
-    parameters: never;
-    requestBodies: never;
-    headers: never;
-    pathItems: never;
+    FoodItem: {
+      /** Format: int32 */
+      id: number;
+      name: string | null;
+      description: string | null;
+      subtext: string | null;
+      imageUrl: string | null;
+    };
+    Link: {
+      name: string;
+      /** Format: uri */
+      target: string;
+    };
+    LinkApiResponse: {
+      /** Format: int32 */
+      count: number;
+      data: components["schemas"]["Link"][];
+    };
+    MenuDay: {
+      date: string | null;
+      menuItems: components["schemas"]["MenuItem"][];
+    };
+    MenuDay2: {
+      date: string | null;
+      menuItems: components["schemas"]["MenuItem"][];
+    } | null;
+    MenuItem: {
+      /** Format: date-time */
+      date: string | null;
+      /** Format: int32 */
+      position: number;
+      isSectionTitle: boolean;
+      text: string | null;
+      food: components["schemas"]["FoodItem"];
+      /** Format: uint32 */
+      stationID: number;
+      isStationHeader: boolean;
+      image: string | null;
+      category: string | null;
+    };
+    MenuWeek: {
+      startDate: string | null;
+      displayName: string | null;
+      days: components["schemas"]["MenuDay"][];
+    } | null;
+    NutrisliceApiResponseOfMenuDay: {
+      data: components["schemas"]["MenuDay2"];
+      /** Format: date-time */
+      expiry: string | null;
+    };
+    NutrisliceApiResponseOfMenuWeek: {
+      data: components["schemas"]["MenuWeek"];
+      /** Format: date-time */
+      expiry: string | null;
+    };
+  };
+  responses: never;
+  parameters: never;
+  requestBodies: never;
+  headers: never;
+  pathItems: never;
 }
 export type $defs = Record<string, never>;
 export type operations = Record<string, never>;

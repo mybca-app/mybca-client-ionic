@@ -8,7 +8,11 @@ type BusListProps = {
   onToggleFavorite: (bus: string) => void;
 };
 
-export const BusList: React.FC<BusListProps> = ({ data, favorites, onToggleFavorite }) => {
+export const BusList: React.FC<BusListProps> = ({
+  data,
+  favorites,
+  onToggleFavorite,
+}) => {
   const [query, setQuery] = useState("");
 
   // sorted list, favorites first
@@ -22,7 +26,7 @@ export const BusList: React.FC<BusListProps> = ({ data, favorites, onToggleFavor
   });
 
   const results = sortedKeys.filter((key) =>
-    key.toLowerCase().includes(query.toLowerCase())
+    key.toLowerCase().includes(query.toLowerCase()),
   );
 
   const handleInput = (event: CustomEvent) => {

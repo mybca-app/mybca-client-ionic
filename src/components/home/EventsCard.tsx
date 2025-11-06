@@ -1,4 +1,14 @@
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonIcon, IonList, IonSpinner, IonText } from "@ionic/react";
+import {
+  IonButton,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonIcon,
+  IonList,
+  IonSpinner,
+  IonText,
+} from "@ionic/react";
 import { arrowForward } from "ionicons/icons";
 import { Event } from "../../network/pocketbase/pocketbase";
 import { EventsListEntry } from "../events/EventsListEntry";
@@ -9,7 +19,11 @@ type EventsCardProps = {
   error: Error | null;
 };
 
-export const EventsCard: React.FC<EventsCardProps> = ({ eventData, isLoading, error }) => {
+export const EventsCard: React.FC<EventsCardProps> = ({
+  eventData,
+  isLoading,
+  error,
+}) => {
   return (
     <IonCard>
       <IonCardHeader>
@@ -33,29 +47,24 @@ export const EventsCard: React.FC<EventsCardProps> = ({ eventData, isLoading, er
         </div>
       )}
 
-      {eventData &&
+      {eventData && (
         <IonCardContent>
           {eventData.length === 0 ? (
-            <IonText>
-              There are no upcoming events.
-            </IonText>
+            <IonText>There are no upcoming events.</IonText>
           ) : (
-            <IonList inset={false} style={{ "background": "transparent" }}>
-              {eventData.map(event => (
-                <EventsListEntry
-                  event={event}
-                  standalone
-                />
+            <IonList inset={false} style={{ background: "transparent" }}>
+              {eventData.map((event) => (
+                <EventsListEntry event={event} standalone />
               ))}
             </IonList>
           )}
         </IonCardContent>
-      }
+      )}
 
       <IonButton fill="clear" routerLink="/events/list">
         Go to events
         <IonIcon icon={arrowForward} slot="end" />
       </IonButton>
     </IonCard>
-  )
-}
+  );
+};

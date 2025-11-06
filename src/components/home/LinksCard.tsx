@@ -1,13 +1,26 @@
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonItem, IonList, IonSpinner, IonText } from "@ionic/react";
+import {
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonItem,
+  IonList,
+  IonSpinner,
+  IonText,
+} from "@ionic/react";
 import { components } from "../../network/openapi/v1";
 
 type LinksCardProps = {
-  linksData: components["schemas"]["Link"][]
+  linksData: components["schemas"]["Link"][];
   isLoading: boolean;
   error: Error | null;
 };
 
-export const LinksCard: React.FC<LinksCardProps> = ({ linksData, isLoading, error }) => {
+export const LinksCard: React.FC<LinksCardProps> = ({
+  linksData,
+  isLoading,
+  error,
+}) => {
   return (
     <IonCard>
       <IonCardHeader>
@@ -32,7 +45,7 @@ export const LinksCard: React.FC<LinksCardProps> = ({ linksData, isLoading, erro
         )}
 
         {linksData && (
-          <IonList inset={false} style={{ "background": "transparent" }}>
+          <IonList inset={false} style={{ background: "transparent" }}>
             {linksData.map(({ name, target }) => (
               <IonItem
                 key={name}

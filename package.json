@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test.e2e": "cypress run",
     "test.unit": "vitest",
-    "lint": "eslint"
+    "lint": "eslint",
+    "format": "prettier . --write"
   },
   "dependencies": {
     "@capacitor/app": "7.1.0",
@@ -53,6 +54,7 @@
     "globals": "^15.15.0",
     "jsdom": "^22.1.0",
     "openapi-typescript": "^7.9.1",
+    "prettier": "3.6.2",
     "terser": "^5.4.0",
     "typescript": "^5.1.6",
     "typescript-eslint": "^8.24.0",

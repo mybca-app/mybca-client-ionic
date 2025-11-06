@@ -8,21 +8,22 @@ import {
   IonText,
   IonTitle,
   IonToolbar,
-  RefresherCustomEvent
-} from '@ionic/react';
-import { useQuery } from '@tanstack/react-query';
-import { pb } from '../network/nexusPocketbase';
-import { EventsList } from '../components/events/EventsList';
-import { Event } from '../network/pocketbase/pocketbase';
+  RefresherCustomEvent,
+} from "@ionic/react";
+import { useQuery } from "@tanstack/react-query";
+import { pb } from "../network/nexusPocketbase";
+import { EventsList } from "../components/events/EventsList";
+import { Event } from "../network/pocketbase/pocketbase";
 
 const EventsPage: React.FC = () => {
   const { data, error, isLoading, refetch } = useQuery({
     queryKey: ["events-eventspage"],
-    queryFn: () => pb.collection("events").getList(1, 50, {
-      expand: "organization",
-      filter: "eventTime >= @now",
-      sort: "eventTime"
-    }),
+    queryFn: () =>
+      pb.collection("events").getList(1, 50, {
+        expand: "organization",
+        filter: "eventTime >= @now",
+        sort: "eventTime",
+      }),
     refetchInterval: 60 * 1000,
   });
 
@@ -40,10 +41,13 @@ const EventsPage: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-        <IonRefresher slot="fixed" onIonRefresh={async (event: RefresherCustomEvent) => {
-          await refetch();
-          event.detail.complete();
-        }}>
+        <IonRefresher
+          slot="fixed"
+          onIonRefresh={async (event: RefresherCustomEvent) => {
+            await refetch();
+            event.detail.complete();
+          }}
+        >
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
 
@@ -59,16 +63,12 @@ const EventsPage: React.FC = () => {
         {error && (
           <div className="ion-text-center ion-padding">
             <IonText color="danger">
-              <p>
-                Failed to load events.
-              </p>
+              <p>Failed to load events.</p>
             </IonText>
           </div>
         )}
 
-        {data && (
-          <EventsList data={data.items as unknown[] as Event[]} />
-        )}
+        {data && <EventsList data={data.items as unknown[] as Event[]} />}
       </IonContent>
     </IonPage>
   );

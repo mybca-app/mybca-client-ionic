@@ -1,4 +1,16 @@
-import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonText, IonSpinner, IonLabel, IonList, IonItem, IonItemDivider } from "@ionic/react";
+import {
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonCardContent,
+  IonText,
+  IonSpinner,
+  IonLabel,
+  IonList,
+  IonItem,
+  IonItemDivider,
+} from "@ionic/react";
 import { components } from "../../network/openapi/v1";
 
 type LunchCardProps = {
@@ -10,7 +22,11 @@ type LunchCardProps = {
 // Milk/Condiments; Deli; Sides
 const UNWANTED_SECTIONS = [3676, 3088, 3090];
 
-export const LunchCard: React.FC<LunchCardProps> = ({ lunchData, isLoading, error }) => {
+export const LunchCard: React.FC<LunchCardProps> = ({
+  lunchData,
+  isLoading,
+  error,
+}) => {
   return (
     <IonCard>
       <IonCardHeader>
@@ -35,33 +51,42 @@ export const LunchCard: React.FC<LunchCardProps> = ({ lunchData, isLoading, erro
           </div>
         )}
 
-        {lunchData && (
-          lunchData.menuItems.length === 0 ? (
+        {lunchData &&
+          (lunchData.menuItems.length === 0 ? (
             <IonText>There is no lunch today.</IonText>
           ) : (
-            <IonList style={{ "background": "transparent" }}>
-              {lunchData.menuItems.filter(item => !UNWANTED_SECTIONS.includes(item.stationID)).map((item, index) => {
-                if (item.isSectionTitle || item.isStationHeader) {
-                  return (
-                    <IonItemDivider className="ion-no-padding ion-padding-top" style={{ "--background": "transparent" }}>
-                      <IonLabel>{item.text}</IonLabel>
-                    </IonItemDivider>
-                  );
-                } else {
-                  const isInsignificantDish = item.category !== "entree" && item.category !== "meat";
+            <IonList style={{ background: "transparent" }}>
+              {lunchData.menuItems
+                .filter((item) => !UNWANTED_SECTIONS.includes(item.stationID))
+                .map((item, index) => {
+                  if (item.isSectionTitle || item.isStationHeader) {
+                    return (
+                      <IonItemDivider
+                        className="ion-no-padding ion-padding-top"
+                        style={{ "--background": "transparent" }}
+                      >
+                        <IonLabel>{item.text}</IonLabel>
+                      </IonItemDivider>
+                    );
+                  } else {
+                    const isInsignificantDish =
+                      item.category !== "entree" && item.category !== "meat";
 
-                  return (
-                    <IonItem key={index} className="ion-no-padding" style={{ "--background": "transparent" }}>
-                      <IonLabel color={isInsignificantDish ? "medium" : ""}>
-                        {item.food.name}
-                      </IonLabel>
-                    </IonItem>
-                  );
-                }
-              })}
+                    return (
+                      <IonItem
+                        key={index}
+                        className="ion-no-padding"
+                        style={{ "--background": "transparent" }}
+                      >
+                        <IonLabel color={isInsignificantDish ? "medium" : ""}>
+                          {item.food.name}
+                        </IonLabel>
+                      </IonItem>
+                    );
+                  }
+                })}
             </IonList>
-          )
-        )}
+          ))}
       </IonCardContent>
     </IonCard>
   );

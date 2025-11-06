@@ -8,11 +8,11 @@ export type Event = {
   updated: string;
   eventTime: string;
   expand: Record<string, any>;
-}
+};
 
 export type Organization = {
   id: string;
   name: string;
   created: string;
   updated: string;
-}
+};

@@ -9,16 +9,14 @@ type EventsListProps = {
 export const EventsList: React.FC<EventsListProps> = ({ data }) => {
   return (
     <>
-      {data.length === 0 ? (<div className="ion-text-center ion-padding">
-        <IonText>
-          There are no upcoming events.
-        </IonText>
-      </div>) : (
+      {data.length === 0 ? (
+        <div className="ion-text-center ion-padding">
+          <IonText>There are no upcoming events.</IonText>
+        </div>
+      ) : (
         <IonList>
           {data.map((event) => (
-            <EventsListEntry
-              event={event}
-            />
+            <EventsListEntry event={event} />
           ))}
         </IonList>
       )}

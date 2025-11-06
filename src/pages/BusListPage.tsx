@@ -1,4 +1,4 @@
-import { Preferences } from '@capacitor/preferences';
+import { Preferences } from "@capacitor/preferences";
 import {
   IonButton,
   IonButtons,
@@ -16,27 +16,39 @@ import {
   IonText,
   IonTitle,
   IonToolbar,
-  RefresherCustomEvent
-} from '@ionic/react';
-import { informationCircleOutline, linkOutline, timeOutline } from 'ionicons/icons';
-import { useEffect, useState } from 'react';
-import { $api } from '../network/client';
-import { BusList } from '../components/buses/BusList';
-import { FAVORITE_BUS_PREFERENCES_KEY } from '../storage/favoriteBus';
+  RefresherCustomEvent,
+} from "@ionic/react";
+import {
+  informationCircleOutline,
+  linkOutline,
+  timeOutline,
+} from "ionicons/icons";
+import { useEffect, useState } from "react";
+import { $api } from "../network/client";
+import { BusList } from "../components/buses/BusList";
+import { FAVORITE_BUS_PREFERENCES_KEY } from "../storage/favoriteBus";
 
-const BUS_SHEET_URL = "https://docs.google.com/spreadsheets/u/1/d/1S5v7kTbSiqV8GottWVi5tzpqLdTrEgWEY4ND4zvyV3o/htmlview#gid=0";
+const BUS_SHEET_URL =
+  "https://docs.google.com/spreadsheets/u/1/d/1S5v7kTbSiqV8GottWVi5tzpqLdTrEgWEY4ND4zvyV3o/htmlview#gid=0";
 
 const BusListPage: React.FC = () => {
-  const { data, error, isLoading, refetch } = $api.useQuery("get", "/api/bus/List", {}, {
-    refetchInterval: 60 * 1000,
-  });
+  const { data, error, isLoading, refetch } = $api.useQuery(
+    "get",
+    "/api/bus/List",
+    {},
+    {
+      refetchInterval: 60 * 1000,
+    },
+  );
 
   const [favorites, setFavorites] = useState<string[]>([]);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     const loadFavorites = async () => {
-      const { value } = await Preferences.get({ key: FAVORITE_BUS_PREFERENCES_KEY });
+      const { value } = await Preferences.get({
+        key: FAVORITE_BUS_PREFERENCES_KEY,
+      });
       if (value) {
         setFavorites(JSON.parse(value));
       }
@@ -59,7 +71,7 @@ const BusListPage: React.FC = () => {
 
   const toggleFavorite = (bus: string) => {
     setFavorites((prev) =>
-      prev.includes(bus) ? prev.filter((b) => b !== bus) : [...prev, bus]
+      prev.includes(bus) ? prev.filter((b) => b !== bus) : [...prev, bus],
     );
   };
 
@@ -72,12 +84,17 @@ const BusListPage: React.FC = () => {
             <IonButton id="buslist-options-menu-trigger">
               <IonIcon slot="icon-only" icon={informationCircleOutline} />
             </IonButton>
-            <IonPopover trigger="buslist-options-menu-trigger" triggerAction="click">
+            <IonPopover
+              trigger="buslist-options-menu-trigger"
+              triggerAction="click"
+            >
               <IonList>
                 {data?.expiry && (
                   <IonItem>
                     <IonIcon slot="start" icon={timeOutline} />
-                    <IonLabel>Expires at {new Date(data.expiry).toLocaleTimeString()}</IonLabel>
+                    <IonLabel>
+                      Expires at {new Date(data.expiry).toLocaleTimeString()}
+                    </IonLabel>
                   </IonItem>
                 )}
                 <IonItem href={BUS_SHEET_URL} target="_blank">
@@ -96,10 +113,13 @@ const BusListPage: React.FC = () => {
           </IonToolbar>
         </IonHeader>
 
-        <IonRefresher slot="fixed" onIonRefresh={async (event: RefresherCustomEvent) => {
-          await refetch();
-          event.detail.complete();
-        }}>
+        <IonRefresher
+          slot="fixed"
+          onIonRefresh={async (event: RefresherCustomEvent) => {
+            await refetch();
+            event.detail.complete();
+          }}
+        >
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
 
@@ -125,7 +145,11 @@ const BusListPage: React.FC = () => {
         )}
 
         {data && (
-          <BusList data={data.data} favorites={favorites} onToggleFavorite={toggleFavorite} />
+          <BusList
+            data={data.data}
+            favorites={favorites}
+            onToggleFavorite={toggleFavorite}
+          />
         )}
       </IonContent>
     </IonPage>
