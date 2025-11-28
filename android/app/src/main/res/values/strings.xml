@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">myBCA</string>
+    <string name="title_activity_main">myBCA</string>
+    <string name="package_name">link.mybca.ionicclient</string>
+    <string name="custom_url_scheme">link.mybca.ionicclient</string>
+</resources>

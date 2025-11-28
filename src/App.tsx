@@ -43,6 +43,7 @@ import "@ionic/react/css/palettes/dark.system.css";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import EventsPage from "./pages/EventsPage";
+import PermissionsBootstrap from "./PermissionsBootstrap";
 
 setupIonicReact();
 
@@ -51,6 +52,8 @@ const queryClient = new QueryClient();
 const App: React.FC = () => (
   <QueryClientProvider client={queryClient}>
     <IonApp>
+      <PermissionsBootstrap />
+      
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
