@@ -31,3 +31,6 @@ yarn-error.log*
 .eslintcache
 
 resources/ios/**/*
+
+google-services.json
+GoogleService-Info.plist

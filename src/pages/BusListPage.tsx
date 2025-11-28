@@ -27,6 +27,8 @@ import { useEffect, useState } from "react";
 import { $api } from "../network/client";
 import { BusList } from "../components/buses/BusList";
 import { FAVORITE_BUS_PREFERENCES_KEY } from "../storage/favoriteBus";
+import { areNotificationsEnabled, townToNotificationTopic } from "../helpers/notifications";
+import { FirebaseMessaging } from "@capacitor-firebase/messaging";
 
 const BUS_SHEET_URL =
   "https://docs.google.com/spreadsheets/u/1/d/1S5v7kTbSiqV8GottWVi5tzpqLdTrEgWEY4ND4zvyV3o/htmlview#gid=0";
@@ -69,10 +71,26 @@ const BusListPage: React.FC = () => {
     saveFavorites();
   }, [favorites]);
 
-  const toggleFavorite = (bus: string) => {
-    setFavorites((prev) =>
-      prev.includes(bus) ? prev.filter((b) => b !== bus) : [...prev, bus],
-    );
+  const toggleFavorite = async (bus: string) => {
+    let isDisable = false;
+    setFavorites((prev) => {
+      if (prev.includes(bus)) {
+        isDisable = true;
+        return prev.filter((b) => b !== bus);
+      } else {
+        return [...prev, bus];
+      }
+    });
+
+    const notifsEnabled = await areNotificationsEnabled();
+    const topicName = townToNotificationTopic(bus);
+    if (notifsEnabled) {
+      if (isDisable) {
+        await FirebaseMessaging.unsubscribeFromTopic({ topic: topicName });
+      } else {
+        await FirebaseMessaging.subscribeToTopic({ topic: topicName });
+      }
+    }
   };
 
   return (
