@@ -4,6 +4,9 @@ const config: CapacitorConfig = {
   appId: "link.mybca.ionicclient",
   appName: "myBCA",
   webDir: "dist",
+  android: {
+    adjustMarginsForEdgeToEdge: "auto",
+  }
 };
 
 export default config;
