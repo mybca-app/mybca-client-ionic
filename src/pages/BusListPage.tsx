@@ -1,4 +1,3 @@
-import { Preferences } from "@capacitor/preferences";
 import {
   IonButton,
   IonButtons,
@@ -24,11 +23,14 @@ import {
   timeOutline,
 } from "ionicons/icons";
 import { useEffect, useState } from "react";
-import { $api } from "../network/client";
 import { BusList } from "../components/buses/BusList";
-import { FAVORITE_BUS_PREFERENCES_KEY } from "../storage/favoriteBus";
-import { areNotificationsEnabled, townToNotificationTopic } from "../helpers/notifications";
-import { FirebaseMessaging } from "@capacitor-firebase/messaging";
+import {
+  areNotificationsEnabled,
+  subscribeToBus,
+  unsubscribeFromBus,
+} from "../helpers/notifications";
+import { $api } from "../network/client";
+import { getFavorites } from "../storage/favoriteBus";
 
 const BUS_SHEET_URL =
   "https://docs.google.com/spreadsheets/u/1/d/1S5v7kTbSiqV8GottWVi5tzpqLdTrEgWEY4ND4zvyV3o/htmlview#gid=0";
@@ -48,12 +50,7 @@ const BusListPage: React.FC = () => {
 
   useEffect(() => {
     const loadFavorites = async () => {
-      const { value } = await Preferences.get({
-        key: FAVORITE_BUS_PREFERENCES_KEY,
-      });
-      if (value) {
-        setFavorites(JSON.parse(value));
-      }
+      setFavorites(await getFavorites());
       setLoaded(true);
     };
     loadFavorites();
@@ -63,10 +60,7 @@ const BusListPage: React.FC = () => {
     if (!loaded) return;
 
     const saveFavorites = async () => {
-      await Preferences.set({
-        key: FAVORITE_BUS_PREFERENCES_KEY,
-        value: JSON.stringify(favorites),
-      });
+      setFavorites(favorites);
     };
     saveFavorites();
   }, [favorites]);
@@ -83,12 +77,11 @@ const BusListPage: React.FC = () => {
     });
 
     const notifsEnabled = await areNotificationsEnabled();
-    const topicName = townToNotificationTopic(bus);
     if (notifsEnabled) {
       if (isDisable) {
-        await FirebaseMessaging.unsubscribeFromTopic({ topic: topicName });
+        await unsubscribeFromBus(bus);
       } else {
-        await FirebaseMessaging.subscribeToTopic({ topic: topicName });
+        await subscribeToBus(bus);
       }
     }
   };

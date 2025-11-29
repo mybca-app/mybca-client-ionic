@@ -6,7 +6,7 @@ const config: CapacitorConfig = {
   webDir: "dist",
   android: {
     adjustMarginsForEdgeToEdge: "auto",
-  }
+  },
 };
 
 export default config;

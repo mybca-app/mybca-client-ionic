@@ -53,7 +53,7 @@ const App: React.FC = () => (
   <QueryClientProvider client={queryClient}>
     <IonApp>
       <PermissionsBootstrap />
-      
+
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
