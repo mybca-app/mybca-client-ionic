@@ -13,8 +13,8 @@ import {
 import { arrowForward } from "ionicons/icons";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FAVORITE_BUS_PREFERENCES_KEY } from "../../storage/favoriteBus";
 import { BusListEntry } from "../buses/BusListEntry";
+import { getFavorites } from "../../storage/favoriteBus";
 
 type BusCardProps = {
   busData: Record<string, string>;
@@ -30,11 +30,9 @@ export const BusCard: React.FC<BusCardProps> = ({
   const [starredBuses, setStarredBuses] = useState<string[]>([]);
   useEffect(() => {
     (async () => {
-      const { value } = await Preferences.get({
-        key: FAVORITE_BUS_PREFERENCES_KEY,
-      });
-      if (value) {
-        setStarredBuses(JSON.parse(value));
+      const value = await getFavorites();
+      if (value && value.length !== 0) {
+        setStarredBuses(value);
       }
     })();
   }, []);
