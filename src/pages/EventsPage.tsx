@@ -11,7 +11,7 @@ import {
   RefresherCustomEvent,
 } from "@ionic/react";
 import { useQuery } from "@tanstack/react-query";
-import { pb } from "../network/nexusPocketbase";
+import { pb } from "../network/eventsPocketbase";
 import { EventsList } from "../components/events/EventsList";
 import { Event } from "../network/pocketbase/pocketbase";
 

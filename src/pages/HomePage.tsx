@@ -13,7 +13,7 @@ import { LunchCard } from "../components/home/LunchCard";
 import { $api } from "../network/client";
 import { LinksCard } from "../components/home/LinksCard";
 import { useQuery } from "@tanstack/react-query";
-import { pb } from "../network/nexusPocketbase";
+import { pb } from "../network/eventsPocketbase";
 import { EventsCard } from "../components/home/EventsCard";
 import { Event } from "../network/pocketbase/pocketbase";
 
