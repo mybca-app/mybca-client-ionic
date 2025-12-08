@@ -1,4 +1,4 @@
-package link.mybca.ionicclient;
+package link.mybca.mobileclient;
 
 import com.getcapacitor.BridgeActivity;
 

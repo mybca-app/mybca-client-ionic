@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    namespace "link.mybca.ionicclient"
+    namespace "link.mybca.mobileclient"
     compileSdk rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "link.mybca.ionicclient"
+        applicationId "link.mybca.mobileclient"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
