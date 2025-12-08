@@ -30,7 +30,7 @@ import {
   unsubscribeFromBus,
 } from "../helpers/notifications";
 import { $api } from "../network/client";
-import { getFavorites } from "../storage/favoriteBus";
+import { getFavorites, setFavorites as storeFavorites } from "../storage/favoriteBus";
 
 const BUS_SHEET_URL =
   "https://docs.google.com/spreadsheets/u/1/d/1S5v7kTbSiqV8GottWVi5tzpqLdTrEgWEY4ND4zvyV3o/htmlview#gid=0";
@@ -60,7 +60,7 @@ const BusListPage: React.FC = () => {
     if (!loaded) return;
 
     const saveFavorites = async () => {
-      setFavorites(favorites);
+      storeFavorites(favorites);
     };
     saveFavorites();
   }, [favorites]);
