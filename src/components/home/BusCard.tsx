@@ -9,6 +9,7 @@ import {
   IonButton,
   IonIcon,
   IonSpinner,
+  useIonViewWillEnter,
 } from "@ionic/react";
 import { arrowForward } from "ionicons/icons";
 import { useState, useEffect } from "react";
@@ -28,14 +29,20 @@ export const BusCard: React.FC<BusCardProps> = ({
   error,
 }) => {
   const [starredBuses, setStarredBuses] = useState<string[]>([]);
+  const loadFavorites = async () => {
+    const value = await getFavorites();
+    if (value && value.length !== 0) {
+      setStarredBuses(value);
+    }
+  };
+
   useEffect(() => {
-    (async () => {
-      const value = await getFavorites();
-      if (value && value.length !== 0) {
-        setStarredBuses(value);
-      }
-    })();
+    loadFavorites();
   }, []);
+
+  useIonViewWillEnter(() => {
+    loadFavorites();
+  })
 
   return (
     <IonCard>
