@@ -30,10 +30,24 @@ import {
   unsubscribeFromBus,
 } from "../helpers/notifications";
 import { $api } from "../network/client";
-import { getFavorites, setFavorites as storeFavorites } from "../storage/favoriteBus";
+import {
+  getFavorites,
+  setFavorites as storeFavorites,
+} from "../storage/favoriteBus";
+import {
+  DefaultSystemBrowserOptions,
+  InAppBrowser,
+} from "@capacitor/inappbrowser";
+import { Capacitor } from "@capacitor/core";
 
-const BUS_SHEET_URL =
-  "https://docs.google.com/spreadsheets/u/1/d/1S5v7kTbSiqV8GottWVi5tzpqLdTrEgWEY4ND4zvyV3o/htmlview#gid=0";
+function openBusSpreadsheet(): void {
+  (async () => {
+    await InAppBrowser.openInSystemBrowser({
+      url: import.meta.env.VITE_BUS_SHEET_URL,
+      options: DefaultSystemBrowserOptions,
+    });
+  })();
+}
 
 const BusListPage: React.FC = () => {
   const { data, error, isLoading, refetch } = $api.useQuery(
@@ -108,10 +122,20 @@ const BusListPage: React.FC = () => {
                     </IonLabel>
                   </IonItem>
                 )}
-                <IonItem href={BUS_SHEET_URL} target="_blank">
-                  <IonIcon slot="start" icon={linkOutline} />
-                  <IonLabel>View spreadsheet</IonLabel>
-                </IonItem>
+                {Capacitor.isNativePlatform() ? (
+                  <IonItem button onClick={openBusSpreadsheet}>
+                    <IonIcon slot="start" icon={linkOutline} />
+                    <IonLabel>View spreadsheet</IonLabel>
+                  </IonItem>
+                ) : (
+                  <IonItem
+                    href={import.meta.env.VITE_BUS_SHEET_URL}
+                    target="_blank"
+                  >
+                    <IonIcon slot="start" icon={linkOutline} />
+                    <IonLabel>View spreadsheet</IonLabel>
+                  </IonItem>
+                )}
               </IonList>
             </IonPopover>
           </IonButtons>
