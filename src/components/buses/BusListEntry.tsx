@@ -33,7 +33,7 @@ export const BusListEntry: React.FC<BusListEntryProps> = ({
             <IonIcon slot="icon-only" icon={isFavorite ? star : starOutline} />
           </IonButton>
         )}
-      
+
       <IonLabel>
         <h2>{town}</h2>
         <p>{position ? "Arrived at BCA" : "Not at BCA"}</p>
@@ -43,15 +43,17 @@ export const BusListEntry: React.FC<BusListEntryProps> = ({
           {position}
         </IonChip>
       )}
-      <IonButton
-        slot="end"
-        color="medium"
-        routerLink={standalone ? "" : `/buses/${encodeURIComponent(town)}/detail`}
-        fill="clear"
-        size="default"
-      >
-        <IonIcon slot="icon-only" icon={informationCircleOutline} />
-      </IonButton>
+      {!standalone && (
+        <IonButton
+          slot="end"
+          color="medium"
+          routerLink={`/buses/${encodeURIComponent(town)}/detail`}
+          fill="clear"
+          size="default"
+        >
+          <IonIcon slot="icon-only" icon={informationCircleOutline} />
+        </IonButton>
+      )}
     </IonItem>
   );
 };
