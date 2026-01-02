@@ -17,7 +17,7 @@ export const ArrivalListEntry: React.FC<ArrivalListEntryProps> = ({
     >
       <IonLabel>
         <h2>Arrived in {position}</h2>
-        <p>{arrivalTime.toLocaleString()} - {town}</p>
+        <p>Detected {arrivalTime.toLocaleString()} - {town}</p>
       </IonLabel>
     </IonItem>
   );
