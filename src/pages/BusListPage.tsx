@@ -52,7 +52,7 @@ function openBusSpreadsheet(): void {
 const BusListPage: React.FC = () => {
   const { data, error, isLoading, refetch } = $api.useQuery(
     "get",
-    "/api/bus/List",
+    "/api/Bus/List",
     {},
     {
       refetchInterval: 60 * 1000,

@@ -10,7 +10,8 @@
     "test.e2e": "cypress run",
     "test.unit": "vitest",
     "lint": "eslint",
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "api-types-update": "openapi-typescript https://main-service-prod-oc1.mybca.link/openapi/v1.json -o ./src/network/openapi/v1.d.ts"
   },
   "dependencies": {
     "@capacitor-firebase/messaging": "^7.4.0",

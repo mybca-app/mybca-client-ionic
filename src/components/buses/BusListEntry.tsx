@@ -1,5 +1,5 @@
 import { IonItem, IonButton, IonIcon, IonLabel, IonChip } from "@ionic/react";
-import { star, starOutline } from "ionicons/icons";
+import { informationCircleOutline, star, starOutline, timeOutline } from "ionicons/icons";
 
 type BusListEntryProps = {
   town: string;
@@ -33,6 +33,7 @@ export const BusListEntry: React.FC<BusListEntryProps> = ({
             <IonIcon slot="icon-only" icon={isFavorite ? star : starOutline} />
           </IonButton>
         )}
+      
       <IonLabel>
         <h2>{town}</h2>
         <p>{position ? "Arrived at BCA" : "Not at BCA"}</p>
@@ -42,6 +43,15 @@ export const BusListEntry: React.FC<BusListEntryProps> = ({
           {position}
         </IonChip>
       )}
+      <IonButton
+        slot="end"
+        color="medium"
+        routerLink={standalone ? "" : `/buses/${encodeURIComponent(town)}/detail`}
+        fill="clear"
+        size="default"
+      >
+        <IonIcon slot="icon-only" icon={informationCircleOutline} />
+      </IonButton>
     </IonItem>
   );
 };

@@ -23,21 +23,21 @@ const HomePage: React.FC = () => {
     error: busError,
     isLoading: busIsLoading,
     refetch: busRefetch,
-  } = $api.useQuery("get", "/api/bus/List");
+  } = $api.useQuery("get", "/api/Bus/List");
 
   const {
     data: lunchData,
     error: lunchError,
     isLoading: lunchIsLoading,
     refetch: lunchRefetch,
-  } = $api.useQuery("get", "/api/lunch/Day");
+  } = $api.useQuery("get", "/api/Lunch/Day");
 
   const {
     data: linksData,
     error: linksError,
     isLoading: linksIsLoading,
     refetch: linksRefetch,
-  } = $api.useQuery("get", "/api/links");
+  } = $api.useQuery("get", "/api/Links");
 
   const {
     data: eventsData,

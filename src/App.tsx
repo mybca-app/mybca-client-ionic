@@ -44,6 +44,7 @@ import "@ionic/react/css/palettes/dark.system.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import EventsPage from "./pages/EventsPage";
 import PermissionsBootstrap from "./PermissionsBootstrap";
+import BusDetailPage from "./pages/BusDetailPage";
 
 setupIonicReact();
 
@@ -60,9 +61,9 @@ const App: React.FC = () => (
             <Route exact path="/home">
               <HomePage />
             </Route>
-            <Route exact path="/buses/list">
-              <BusListPage />
-            </Route>
+            <Route exact path="/buses/list" component={BusListPage} />
+            <Route exact path="/buses/:bus/detail" component={BusDetailPage} />
+
             <Route exact path="/events/list">
               <EventsPage />
             </Route>
