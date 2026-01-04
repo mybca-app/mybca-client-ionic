@@ -29,7 +29,7 @@ export const EventsPage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader translucent>
         <IonToolbar>
           <IonTitle>Events</IonTitle>
         </IonToolbar>

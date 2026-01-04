@@ -102,7 +102,7 @@ export const BusListPage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader translucent>
         <IonToolbar>
           <IonTitle>Buses</IonTitle>
           <IonButtons slot="end">

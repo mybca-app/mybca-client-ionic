@@ -4,6 +4,7 @@ import {
   IonPage,
   IonRefresher,
   IonRefresherContent,
+  IonText,
   IonTitle,
   IonToolbar,
   RefresherCustomEvent,
@@ -16,6 +17,18 @@ import { LunchCard } from "../components/home/LunchCard";
 import { $api } from "../network/client";
 import { pb } from "../network/eventsPocketbase";
 import { Event } from "../network/pocketbase/pocketbase";
+
+function getTimeGreeting(): string {
+  const hour = new Date().getHours();
+
+  if (hour >= 5 && hour < 12) {
+    return "Good morning";
+  } else if (hour >= 12 && hour <= 17) {
+    return "Good afternoon";
+  } else {
+    return "Good evening";
+  }
+}
 
 export const HomePage: React.FC = () => {
   const {
@@ -56,7 +69,7 @@ export const HomePage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader>
+      <IonHeader translucent>
         <IonToolbar>
           <IonTitle>myBCA</IonTitle>
         </IonToolbar>
@@ -64,7 +77,13 @@ export const HomePage: React.FC = () => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">myBCA</IonTitle>
+            <IonText color="medium" className="ion-padding" style={{
+              fontSize: "1.25rem",
+              fontWeight: "bold",
+            }}>
+              myBCA
+            </IonText>
+            <IonTitle className="ion-padding-top" size="large">👋 {getTimeGreeting()}</IonTitle>
           </IonToolbar>
         </IonHeader>
 
