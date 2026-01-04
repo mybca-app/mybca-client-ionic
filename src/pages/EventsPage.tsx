@@ -53,7 +53,7 @@ const EventsPage: React.FC = () => {
 
         {isLoading && (
           <div className="ion-text-center ion-padding">
-            <IonSpinner name="crescent" />
+            <IonSpinner />
             <IonText color="medium">
               <p>Loading events...</p>
             </IonText>

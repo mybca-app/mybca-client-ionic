@@ -32,7 +32,7 @@ export const EventsCard: React.FC<EventsCardProps> = ({
 
       {isLoading && (
         <div className="ion-text-center ion-padding">
-          <IonSpinner name="crescent" />
+          <IonSpinner />
           <IonText color="medium">
             <p>Loading events...</p>
           </IonText>

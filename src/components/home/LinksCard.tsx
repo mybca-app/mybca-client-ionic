@@ -29,7 +29,7 @@ export const LinksCard: React.FC<LinksCardProps> = ({
       <IonCardContent>
         {isLoading && (
           <div className="ion-text-center ion-padding">
-            <IonSpinner name="crescent" />
+            <IonSpinner />
             <IonText color="medium">
               <p>Loading quick links...</p>
             </IonText>

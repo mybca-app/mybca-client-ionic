@@ -30,7 +30,7 @@ const BusDetailPage: React.FC = () => {
       <IonContent fullscreen>
         {isLoading && (
           <div className="ion-text-center ion-padding">
-            <IonSpinner name="crescent" />
+            <IonSpinner />
             <IonText color="medium">
               <p>Loading arrival history...</p>
             </IonText>
