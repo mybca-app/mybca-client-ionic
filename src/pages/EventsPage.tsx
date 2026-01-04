@@ -4,18 +4,18 @@ import {
   IonPage,
   IonRefresher,
   IonRefresherContent,
-  IonSpinner,
   IonText,
   IonTitle,
   IonToolbar,
   RefresherCustomEvent,
 } from "@ionic/react";
 import { useQuery } from "@tanstack/react-query";
-import { pb } from "../network/eventsPocketbase";
 import { EventsList } from "../components/events/EventsList";
+import { Loading } from "../components/shared/Loading";
+import { pb } from "../network/eventsPocketbase";
 import { Event } from "../network/pocketbase/pocketbase";
 
-const EventsPage: React.FC = () => {
+export const EventsPage: React.FC = () => {
   const { data, error, isLoading, refetch } = useQuery({
     queryKey: ["events-eventspage"],
     queryFn: () =>
@@ -51,14 +51,7 @@ const EventsPage: React.FC = () => {
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
 
-        {isLoading && (
-          <div className="ion-text-center ion-padding">
-            <IonSpinner />
-            <IonText color="medium">
-              <p>Loading events...</p>
-            </IonText>
-          </div>
-        )}
+        {isLoading && <Loading message="Loading events..." />}
 
         {error && (
           <div className="ion-text-center ion-padding">
@@ -73,5 +66,3 @@ const EventsPage: React.FC = () => {
     </IonPage>
   );
 };
-
-export default EventsPage;

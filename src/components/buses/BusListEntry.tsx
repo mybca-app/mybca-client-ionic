@@ -1,5 +1,5 @@
-import { IonItem, IonButton, IonIcon, IonLabel, IonChip } from "@ionic/react";
-import { informationCircleOutline, star, starOutline, timeOutline } from "ionicons/icons";
+import { IonButton, IonChip, IonIcon, IonItem, IonLabel } from "@ionic/react";
+import { informationCircleOutline, star, starOutline } from "ionicons/icons";
 
 type BusListEntryProps = {
   town: string;

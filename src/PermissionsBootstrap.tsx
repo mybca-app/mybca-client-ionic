@@ -1,7 +1,7 @@
 import { FirebaseMessaging } from "@capacitor-firebase/messaging";
 import { useEffect } from "react";
 
-export default function PermissionsBootstrap() {
+export const PermissionsBootstrap: React.FC = () => {
   useEffect(() => {
     (async () => {
       const status = (await FirebaseMessaging.checkPermissions()).receive;
@@ -12,4 +12,4 @@ export default function PermissionsBootstrap() {
   }, []);
 
   return null;
-}
+};

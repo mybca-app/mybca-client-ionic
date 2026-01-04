@@ -6,9 +6,7 @@ type ArrivalListProps = {
   data: components["schemas"]["BusArrival"][];
 };
 
-export const ArrivalList: React.FC<ArrivalListProps> = ({
-  data
-}) => {
+export const ArrivalList: React.FC<ArrivalListProps> = ({ data }) => {
   return (
     <>
       <IonList>

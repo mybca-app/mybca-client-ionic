@@ -1,21 +1,20 @@
-import { Preferences } from "@capacitor/preferences";
 import {
+  IonButton,
   IonCard,
+  IonCardContent,
   IonCardHeader,
   IonCardTitle,
-  IonCardContent,
-  IonText,
-  IonList,
-  IonButton,
   IonIcon,
-  IonSpinner,
+  IonList,
+  IonText,
   useIonViewWillEnter,
 } from "@ionic/react";
 import { arrowForward } from "ionicons/icons";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { BusListEntry } from "../buses/BusListEntry";
 import { getFavorites } from "../../storage/favoriteBus";
+import { BusListEntry } from "../buses/BusListEntry";
+import { Loading } from "../shared/Loading";
 
 type BusCardProps = {
   busData: Record<string, string>;
@@ -42,7 +41,7 @@ export const BusCard: React.FC<BusCardProps> = ({
 
   useIonViewWillEnter(() => {
     loadFavorites();
-  })
+  });
 
   return (
     <IonCard>
@@ -50,14 +49,7 @@ export const BusCard: React.FC<BusCardProps> = ({
         <IonCardTitle>Starred buses</IonCardTitle>
       </IonCardHeader>
 
-      {isLoading && (
-        <div className="ion-text-center ion-padding">
-          <IonSpinner />
-          <IonText color="medium">
-            <p>Loading buses...</p>
-          </IonText>
-        </div>
-      )}
+      {isLoading && <Loading message="Loading buses..." />}
 
       {error && (
         <div className="ion-text-center ion-padding">

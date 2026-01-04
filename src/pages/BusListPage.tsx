@@ -1,3 +1,8 @@
+import { Capacitor } from "@capacitor/core";
+import {
+  DefaultSystemBrowserOptions,
+  InAppBrowser,
+} from "@capacitor/inappbrowser";
 import {
   IonButton,
   IonButtons,
@@ -11,7 +16,6 @@ import {
   IonPopover,
   IonRefresher,
   IonRefresherContent,
-  IonSpinner,
   IonText,
   IonTitle,
   IonToolbar,
@@ -24,6 +28,7 @@ import {
 } from "ionicons/icons";
 import { useEffect, useState } from "react";
 import { BusList } from "../components/buses/BusList";
+import { Loading } from "../components/shared/Loading";
 import {
   areNotificationsEnabled,
   subscribeToBus,
@@ -34,11 +39,6 @@ import {
   getFavorites,
   setFavorites as storeFavorites,
 } from "../storage/favoriteBus";
-import {
-  DefaultSystemBrowserOptions,
-  InAppBrowser,
-} from "@capacitor/inappbrowser";
-import { Capacitor } from "@capacitor/core";
 
 function openBusSpreadsheet(): void {
   (async () => {
@@ -49,7 +49,7 @@ function openBusSpreadsheet(): void {
   })();
 }
 
-const BusListPage: React.FC = () => {
+export const BusListPage: React.FC = () => {
   const { data, error, isLoading, refetch } = $api.useQuery(
     "get",
     "/api/Bus/List",
@@ -158,14 +158,7 @@ const BusListPage: React.FC = () => {
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
 
-        {isLoading && (
-          <div className="ion-text-center ion-padding">
-            <IonSpinner />
-            <IonText color="medium">
-              <p>Loading buses...</p>
-            </IonText>
-          </div>
-        )}
+        {isLoading && <Loading message="Loading buses..." />}
 
         {error && (
           <div className="ion-text-center ion-padding">
@@ -190,5 +183,3 @@ const BusListPage: React.FC = () => {
     </IonPage>
   );
 };
-
-export default BusListPage;

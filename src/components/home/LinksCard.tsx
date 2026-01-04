@@ -5,10 +5,10 @@ import {
   IonCardTitle,
   IonItem,
   IonList,
-  IonSpinner,
   IonText,
 } from "@ionic/react";
 import { components } from "../../network/openapi/v1";
+import { Loading } from "../shared/Loading";
 
 type LinksCardProps = {
   linksData: components["schemas"]["Link"][];
@@ -27,14 +27,7 @@ export const LinksCard: React.FC<LinksCardProps> = ({
         <IonCardTitle>Quick links</IonCardTitle>
       </IonCardHeader>
       <IonCardContent>
-        {isLoading && (
-          <div className="ion-text-center ion-padding">
-            <IonSpinner />
-            <IonText color="medium">
-              <p>Loading quick links...</p>
-            </IonText>
-          </div>
-        )}
+        {isLoading && <Loading message="Loading quick links..." />}
 
         {error && (
           <div className="ion-text-center ion-padding">

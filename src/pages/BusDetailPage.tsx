@@ -1,13 +1,23 @@
-import { IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonSpinner, IonText, IonTitle, IonToolbar } from "@ionic/react"
+import {
+  IonBackButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonText,
+  IonTitle,
+  IonToolbar,
+} from "@ionic/react";
 import { useParams } from "react-router";
 import { ArrivalList } from "../components/buses/ArrivalList";
+import { Loading } from "../components/shared/Loading";
 import { $api } from "../network/client";
 
 interface BusDetailParams {
   bus: string;
 }
 
-const BusDetailPage: React.FC = () => {
+export const BusDetailPage: React.FC = () => {
   const { bus: busRaw } = useParams<BusDetailParams>();
   const bus = decodeURIComponent(busRaw);
 
@@ -28,21 +38,12 @@ const BusDetailPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        {isLoading && (
-          <div className="ion-text-center ion-padding">
-            <IonSpinner />
-            <IonText color="medium">
-              <p>Loading arrival history...</p>
-            </IonText>
-          </div>
-        )}
+        {isLoading && <Loading message="Loading arrival history..." />}
 
         {error && (
           <div className="ion-text-center ion-padding">
             <IonText color="danger">
-              <p>
-                Failed to load arrival history.
-              </p>
+              <p>Failed to load arrival history.</p>
             </IonText>
           </div>
         )}
@@ -51,6 +52,4 @@ const BusDetailPage: React.FC = () => {
       </IonContent>
     </IonPage>
   );
-}
-
-export default BusDetailPage;
+};

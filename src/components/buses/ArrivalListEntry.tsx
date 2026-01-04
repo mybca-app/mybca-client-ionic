@@ -12,12 +12,12 @@ export const ArrivalListEntry: React.FC<ArrivalListEntryProps> = ({
   arrivalTime,
 }) => {
   return (
-    <IonItem
-      style={{ "--background": "transparent" }}
-    >
+    <IonItem style={{ "--background": "transparent" }}>
       <IonLabel>
         <h2>Arrived in {position}</h2>
-        <p>Detected {arrivalTime.toLocaleString()} - {town}</p>
+        <p>
+          Detected {arrivalTime.toLocaleString()} - {town}
+        </p>
       </IonLabel>
     </IonItem>
   );

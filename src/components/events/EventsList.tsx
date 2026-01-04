@@ -1,6 +1,6 @@
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonList, IonText } from "@ionic/react";
-import { EventsListEntry } from "./EventsListEntry";
+import { IonList, IonText } from "@ionic/react";
 import { Event } from "../../network/pocketbase/pocketbase";
+import { EventsListEntry } from "./EventsListEntry";
 
 type EventsListProps = {
   data: Event[];
@@ -12,7 +12,14 @@ export const EventsList: React.FC<EventsListProps> = ({ data }) => {
       <div className="ion-padding">
         <IonText>
           Want your club's events to be featured here? Fill out &#32;
-          <a href={import.meta.env.VITE_EVENT_FORM_URL} target="_blank" rel="noopener noreferrer">this form</a>.
+          <a
+            href={import.meta.env.VITE_EVENT_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            this form
+          </a>
+          .
         </IonText>
       </div>
       {data.length === 0 ? (

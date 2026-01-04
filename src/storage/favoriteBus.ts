@@ -14,7 +14,7 @@ export async function getFavorites(): Promise<string[]> {
   return [];
 }
 
-export async function setFavorites(newFavorites: string[]) {
+export async function setFavorites(newFavorites: string[]): Promise<void> {
   await Preferences.set({
     key: FAVORITE_BUS_PREFERENCES_KEY,
     value: JSON.stringify(newFavorites),

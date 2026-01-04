@@ -4,368 +4,368 @@
  */
 
 export interface paths {
-    "/api/Bus/List": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Retrieves a map of each bus to its position */
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description OK */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "text/plain": components["schemas"]["BusApiResponse"];
-                        "application/json": components["schemas"]["BusApiResponse"];
-                        "text/json": components["schemas"]["BusApiResponse"];
-                    };
-                };
-            };
-        };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+  "/api/Bus/List": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/api/Bus/{bus}/History": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    /** Retrieves a map of each bus to its position */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description OK */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            "text/plain": components["schemas"]["BusApiResponse"];
+            "application/json": components["schemas"]["BusApiResponse"];
+            "text/json": components["schemas"]["BusApiResponse"];
+          };
         };
-        /** Retrieves a history of a bus's arrivals */
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path: {
-                    bus: string;
-                };
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description OK */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "text/plain": components["schemas"]["BusArrival"][];
-                        "application/json": components["schemas"]["BusArrival"][];
-                        "text/json": components["schemas"]["BusArrival"][];
-                    };
-                };
-            };
-        };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+      };
     };
-    "/api/Links": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Retrieves a list of quick links to key BCA services */
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description OK */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "text/plain": components["schemas"]["LinkApiResponse"];
-                        "application/json": components["schemas"]["LinkApiResponse"];
-                        "text/json": components["schemas"]["LinkApiResponse"];
-                    };
-                };
-            };
-        };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/Bus/{bus}/History": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/api/News/Latest": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    /** Retrieves a history of a bus's arrivals */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path: {
+          bus: string;
         };
-        /** Retrieves the latest news story */
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description OK */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "text/plain": components["schemas"]["NewsApiResponseOfNewsStory"];
-                        "application/json": components["schemas"]["NewsApiResponseOfNewsStory"];
-                        "text/json": components["schemas"]["NewsApiResponseOfNewsStory"];
-                    };
-                };
-            };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description OK */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            "text/plain": components["schemas"]["BusArrival"][];
+            "application/json": components["schemas"]["BusArrival"][];
+            "text/json": components["schemas"]["BusArrival"][];
+          };
         };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+      };
     };
-    "/api/News/List": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Retrieves the top 10 latest news stories */
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description OK */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "text/plain": components["schemas"]["NewsApiResponseOfNewsStory"];
-                        "application/json": components["schemas"]["NewsApiResponseOfNewsStory"];
-                        "text/json": components["schemas"]["NewsApiResponseOfNewsStory"];
-                    };
-                };
-            };
-        };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/Links": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
-    "/api/Lunch/Week": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
+    /** Retrieves a list of quick links to key BCA services */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description OK */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            "text/plain": components["schemas"]["LinkApiResponse"];
+            "application/json": components["schemas"]["LinkApiResponse"];
+            "text/json": components["schemas"]["LinkApiResponse"];
+          };
         };
-        /** Retrieves the lunch menu for the week */
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description OK */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "text/plain": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
-                        "application/json": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
-                        "text/json": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
-                    };
-                };
-            };
-        };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+      };
     };
-    "/api/Lunch/Day": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        /** Retrieves the lunch menu for the day */
-        get: {
-            parameters: {
-                query?: never;
-                header?: never;
-                path?: never;
-                cookie?: never;
-            };
-            requestBody?: never;
-            responses: {
-                /** @description OK */
-                200: {
-                    headers: {
-                        [name: string]: unknown;
-                    };
-                    content: {
-                        "text/plain": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
-                        "application/json": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
-                        "text/json": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
-                    };
-                };
-            };
-        };
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/News/Latest": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
+    /** Retrieves the latest news story */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description OK */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            "text/plain": components["schemas"]["NewsApiResponseOfNewsStory"];
+            "application/json": components["schemas"]["NewsApiResponseOfNewsStory"];
+            "text/json": components["schemas"]["NewsApiResponseOfNewsStory"];
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/News/List": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Retrieves the top 10 latest news stories */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description OK */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            "text/plain": components["schemas"]["NewsApiResponseOfNewsStory"];
+            "application/json": components["schemas"]["NewsApiResponseOfNewsStory"];
+            "text/json": components["schemas"]["NewsApiResponseOfNewsStory"];
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/Lunch/Week": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Retrieves the lunch menu for the week */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description OK */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            "text/plain": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
+            "application/json": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
+            "text/json": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/api/Lunch/Day": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Retrieves the lunch menu for the day */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        /** @description OK */
+        200: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content: {
+            "text/plain": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
+            "application/json": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
+            "text/json": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
+          };
+        };
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
-    schemas: {
-        BusApiResponse: {
-            /** Format: int32 */
-            count: number;
-            data: {
-                [key: string]: string;
-            };
-            /** Format: date-time */
-            expiry: string | null;
-        };
-        BusArrival: {
-            /** Format: int32 */
-            id?: number;
-            busName: string | null;
-            busPosition: string | null;
-            /** Format: date-time */
-            arrivalTime?: string;
-        };
-        FoodItem: {
-            /** Format: int32 */
-            id: number;
-            name: string | null;
-            description: string | null;
-            subtext: string | null;
-            imageUrl: string | null;
-        };
-        Link: {
-            name: string;
-            /** Format: uri */
-            target: string;
-        };
-        LinkApiResponse: {
-            /** Format: int32 */
-            count: number;
-            data: components["schemas"]["Link"][];
-        };
-        MenuDay: {
-            date: string | null;
-            menuItems: components["schemas"]["MenuItem"][];
-        };
-        MenuDay2: {
-            date: string | null;
-            menuItems: components["schemas"]["MenuItem"][];
-        } | null;
-        MenuItem: {
-            /** Format: date-time */
-            date: string | null;
-            /** Format: int32 */
-            position: number;
-            isSectionTitle: boolean;
-            text: string | null;
-            food: components["schemas"]["FoodItem"];
-            /** Format: uint32 */
-            stationID: number;
-            isStationHeader: boolean;
-            image: string | null;
-            category: string | null;
-        };
-        MenuWeek: {
-            startDate: string | null;
-            displayName: string | null;
-            days: components["schemas"]["MenuDay"][];
-        } | null;
-        NewsApiResponseOfNewsStory: {
-            data: components["schemas"]["NewsStory"];
-            /** Format: date-time */
-            expiry: string | null;
-        };
-        NewsStory: {
-            title: string;
-            link: string;
-            imageLink: string | null;
-            /** Format: date-time */
-            createdAt: string;
-        } | null;
-        NutrisliceApiResponseOfMenuDay: {
-            data: components["schemas"]["MenuDay2"];
-            /** Format: date-time */
-            expiry: string | null;
-        };
-        NutrisliceApiResponseOfMenuWeek: {
-            data: components["schemas"]["MenuWeek"];
-            /** Format: date-time */
-            expiry: string | null;
-        };
+  schemas: {
+    BusApiResponse: {
+      /** Format: int32 */
+      count: number;
+      data: {
+        [key: string]: string;
+      };
+      /** Format: date-time */
+      expiry: string | null;
     };
-    responses: never;
-    parameters: never;
-    requestBodies: never;
-    headers: never;
-    pathItems: never;
+    BusArrival: {
+      /** Format: int32 */
+      id?: number;
+      busName: string | null;
+      busPosition: string | null;
+      /** Format: date-time */
+      arrivalTime?: string;
+    };
+    FoodItem: {
+      /** Format: int32 */
+      id: number;
+      name: string | null;
+      description: string | null;
+      subtext: string | null;
+      imageUrl: string | null;
+    };
+    Link: {
+      name: string;
+      /** Format: uri */
+      target: string;
+    };
+    LinkApiResponse: {
+      /** Format: int32 */
+      count: number;
+      data: components["schemas"]["Link"][];
+    };
+    MenuDay: {
+      date: string | null;
+      menuItems: components["schemas"]["MenuItem"][];
+    };
+    MenuDay2: {
+      date: string | null;
+      menuItems: components["schemas"]["MenuItem"][];
+    } | null;
+    MenuItem: {
+      /** Format: date-time */
+      date: string | null;
+      /** Format: int32 */
+      position: number;
+      isSectionTitle: boolean;
+      text: string | null;
+      food: components["schemas"]["FoodItem"];
+      /** Format: uint32 */
+      stationID: number;
+      isStationHeader: boolean;
+      image: string | null;
+      category: string | null;
+    };
+    MenuWeek: {
+      startDate: string | null;
+      displayName: string | null;
+      days: components["schemas"]["MenuDay"][];
+    } | null;
+    NewsApiResponseOfNewsStory: {
+      data: components["schemas"]["NewsStory"];
+      /** Format: date-time */
+      expiry: string | null;
+    };
+    NewsStory: {
+      title: string;
+      link: string;
+      imageLink: string | null;
+      /** Format: date-time */
+      createdAt: string;
+    } | null;
+    NutrisliceApiResponseOfMenuDay: {
+      data: components["schemas"]["MenuDay2"];
+      /** Format: date-time */
+      expiry: string | null;
+    };
+    NutrisliceApiResponseOfMenuWeek: {
+      data: components["schemas"]["MenuWeek"];
+      /** Format: date-time */
+      expiry: string | null;
+    };
+  };
+  responses: never;
+  parameters: never;
+  requestBodies: never;
+  headers: never;
+  pathItems: never;
 }
 export type $defs = Record<string, never>;
 export type operations = Record<string, never>;

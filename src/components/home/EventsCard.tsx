@@ -6,12 +6,12 @@ import {
   IonCardTitle,
   IonIcon,
   IonList,
-  IonSpinner,
   IonText,
 } from "@ionic/react";
 import { arrowForward } from "ionicons/icons";
 import { Event } from "../../network/pocketbase/pocketbase";
 import { EventsListEntry } from "../events/EventsListEntry";
+import { Loading } from "../shared/Loading";
 
 type EventsCardProps = {
   eventData: Event[];
@@ -30,14 +30,7 @@ export const EventsCard: React.FC<EventsCardProps> = ({
         <IonCardTitle>Upcoming events</IonCardTitle>
       </IonCardHeader>
 
-      {isLoading && (
-        <div className="ion-text-center ion-padding">
-          <IonSpinner />
-          <IonText color="medium">
-            <p>Loading events...</p>
-          </IonText>
-        </div>
-      )}
+      {isLoading && <Loading message="Loading events..." />}
 
       {error && (
         <div className="ion-text-center ion-padding">

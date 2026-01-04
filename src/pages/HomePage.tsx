@@ -8,16 +8,16 @@ import {
   IonToolbar,
   RefresherCustomEvent,
 } from "@ionic/react";
+import { useQuery } from "@tanstack/react-query";
 import { BusCard } from "../components/home/BusCard";
+import { EventsCard } from "../components/home/EventsCard";
+import { LinksCard } from "../components/home/LinksCard";
 import { LunchCard } from "../components/home/LunchCard";
 import { $api } from "../network/client";
-import { LinksCard } from "../components/home/LinksCard";
-import { useQuery } from "@tanstack/react-query";
 import { pb } from "../network/eventsPocketbase";
-import { EventsCard } from "../components/home/EventsCard";
 import { Event } from "../network/pocketbase/pocketbase";
 
-const HomePage: React.FC = () => {
+export const HomePage: React.FC = () => {
   const {
     data: busData,
     error: busError,
@@ -104,5 +104,3 @@ const HomePage: React.FC = () => {
     </IonPage>
   );
 };
-
-export default HomePage;

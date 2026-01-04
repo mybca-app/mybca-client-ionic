@@ -1,17 +1,17 @@
 import {
   IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardSubtitle,
   IonCardContent,
-  IonText,
-  IonSpinner,
-  IonLabel,
-  IonList,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
   IonItem,
   IonItemDivider,
+  IonLabel,
+  IonList,
+  IonText,
 } from "@ionic/react";
 import { components } from "../../network/openapi/v1";
+import { Loading } from "../shared/Loading";
 
 type LunchCardProps = {
   lunchData?: components["schemas"]["MenuDay2"];
@@ -34,14 +34,7 @@ export const LunchCard: React.FC<LunchCardProps> = ({
         <IonCardSubtitle>{new Date().toLocaleDateString()}</IonCardSubtitle>
       </IonCardHeader>
       <IonCardContent>
-        {isLoading && (
-          <div className="ion-text-center ion-padding">
-            <IonSpinner />
-            <IonText color="medium">
-              <p>Loading lunch...</p>
-            </IonText>
-          </div>
-        )}
+        {isLoading && <Loading message="Loading lunch..." />}
 
         {error && (
           <div className="ion-text-center ion-padding">
