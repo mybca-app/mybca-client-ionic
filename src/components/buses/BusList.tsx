@@ -40,6 +40,7 @@ export const BusList: React.FC<BusListProps> = ({
       <IonList>
         {results.map((key) => (
           <BusListEntry
+            key={key}
             town={key}
             position={data[key]}
             isFavorite={favorites.includes(key)}

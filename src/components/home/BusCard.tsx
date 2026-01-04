@@ -83,6 +83,7 @@ export const BusCard: React.FC<BusCardProps> = ({
                 .map((town) => (
                   <BusListEntry
                     town={town}
+                    key={town}
                     position={busData[town] ?? null}
                     standalone
                   />
