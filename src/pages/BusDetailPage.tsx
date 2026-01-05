@@ -23,8 +23,8 @@ export const BusDetailPage: React.FC = () => {
 
   const { data, error, isLoading } = $api.useQuery(
     "get",
-    "/api/Bus/{bus}/History",
-    { params: { path: { bus: bus } } },
+    "/api/Bus/History",
+    { params: { query: { bus: bus } } },
   );
 
   return (

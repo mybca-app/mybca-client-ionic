@@ -1,6 +1,7 @@
 import { IonLabel, IonList, IonListHeader } from "@ionic/react";
 import { components } from "../../network/openapi/v1";
 import { ArrivalListEntry } from "./ArrivalListEntry";
+import { utcDateToLocal } from "../../helpers/dateFormat";
 
 type ArrivalListProps = {
   data: components["schemas"]["BusArrival"][];
@@ -17,7 +18,7 @@ export const ArrivalList: React.FC<ArrivalListProps> = ({ data }) => {
           <ArrivalListEntry
             town={arrival.busName ?? ""}
             position={arrival.busPosition ?? ""}
-            arrivalTime={new Date(arrival.arrivalTime ?? "")}
+            arrivalTime={utcDateToLocal(new Date(arrival.arrivalTime ?? ""))}
           />
         ))}
       </IonList>

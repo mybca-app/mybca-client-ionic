@@ -42,7 +42,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/Bus/{bus}/History": {
+    "/api/Bus/History": {
         parameters: {
             query?: never;
             header?: never;
@@ -52,11 +52,11 @@ export interface paths {
         /** Retrieves a history of a bus's arrivals */
         get: {
             parameters: {
-                query?: never;
-                header?: never;
-                path: {
-                    bus: string;
+                query?: {
+                    bus?: string;
                 };
+                header?: never;
+                path?: never;
                 cookie?: never;
             };
             requestBody?: never;
