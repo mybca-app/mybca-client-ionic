@@ -17,6 +17,8 @@ import { LunchCard } from "../components/home/LunchCard";
 import { $api } from "../network/client";
 import { pb } from "../network/eventsPocketbase";
 import { Event } from "../network/pocketbase/pocketbase";
+import { formatLocalDate } from "../helpers/dateFormat";
+import { ScheduleCard } from "../components/home/ScheduleCard";
 
 function getTimeGreeting(): string {
   const hour = new Date().getHours();
@@ -31,6 +33,17 @@ function getTimeGreeting(): string {
 }
 
 export const HomePage: React.FC = () => {
+  const {
+    data: scheduleData,
+    error: scheduleError,
+    isLoading: scheduleIsLoading,
+    refetch: scheduleRefetch,
+  } = $api.useQuery(
+    "get",
+    "/api/Schedule/Day/{date}",
+    { params: { path: { date: formatLocalDate() } } }
+  );
+
   const {
     data: busData,
     error: busError,
@@ -90,6 +103,7 @@ export const HomePage: React.FC = () => {
         <IonRefresher
           slot="fixed"
           onIonRefresh={async (event: RefresherCustomEvent) => {
+            await scheduleRefetch();
             await busRefetch();
             await lunchRefetch();
             await linksRefetch();
@@ -104,6 +118,10 @@ export const HomePage: React.FC = () => {
           isLoading={busIsLoading}
           error={busError}
         />
+
+        {scheduleData && Object.keys(scheduleData).length > 0
+          && <ScheduleCard schedule={scheduleData?.schedule || null} />}
+
         <EventsCard
           eventData={(eventsData?.items as unknown[] as Event[]) ?? []}
           isLoading={eventsIsLoading}
