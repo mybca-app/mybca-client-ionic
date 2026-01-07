@@ -13,21 +13,6 @@ export function formatLocalDate(date = new Date()): string {
   return `${y}-${m}-${d}`;
 }
 
-// Source - https://stackoverflow.com/questions/6525538/convert-utc-date-time-to-local-date-time
-// Posted by Adorjan Princz, modified by community. See post 'Timeline' for change history
-// Retrieved 2026-01-05, License - CC BY-SA 3.0
-export function utcDateToLocal(date: Date): Date {
-  var newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
-
-  var offset = date.getTimezoneOffset() / 60;
-  var hours = date.getHours();
-
-  newDate.setHours(hours - offset);
-
-  return newDate;
-}
-
-
 export function formatTimeByLocale(time: string): string {
   if (!time) return '';
 
