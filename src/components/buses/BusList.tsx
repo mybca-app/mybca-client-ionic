@@ -1,4 +1,4 @@
-import { IonList, IonSearchbar } from "@ionic/react";
+import { IonLabel, IonList, IonSearchbar, IonSegment, IonSegmentButton, IonToolbar } from "@ionic/react";
 import { useState } from "react";
 import { BusListEntry } from "./BusListEntry";
 
@@ -14,6 +14,7 @@ export const BusList: React.FC<BusListProps> = ({
   onToggleFavorite,
 }) => {
   const [query, setQuery] = useState("");
+  const [segment, setSegment] = useState<"all" | "starred" | "arrived" | "missing">("all");
 
   // sorted list, favorites first
   const sortedKeys = Object.keys(data).sort((a, b) => {
@@ -26,7 +27,10 @@ export const BusList: React.FC<BusListProps> = ({
   });
 
   const results = sortedKeys.filter((key) =>
-    key.toLowerCase().includes(query.toLowerCase()),
+    key.toLowerCase().includes(query.toLowerCase())
+    && (segment != "starred" || favorites.includes(key))
+    && (segment != "arrived" || !!data[key])
+    && (segment != "missing" || !data[key])
   );
 
   const handleInput = (event: CustomEvent) => {
@@ -37,6 +41,22 @@ export const BusList: React.FC<BusListProps> = ({
   return (
     <>
       <IonSearchbar onIonInput={handleInput}></IonSearchbar>
+      <div style={{ paddingLeft: "11px", paddingRight: "11px", paddingBottom: "11px" }}>
+        <IonSegment value={segment} onIonChange={(e) => setSegment(e.detail.value as typeof segment)}>
+          <IonSegmentButton value="all">
+            <IonLabel>All</IonLabel>
+          </IonSegmentButton>
+          <IonSegmentButton value="starred">
+            <IonLabel>Starred</IonLabel>
+          </IonSegmentButton>
+          <IonSegmentButton value="arrived">
+            <IonLabel>Arrived</IonLabel>
+          </IonSegmentButton>
+          <IonSegmentButton value="missing">
+            <IonLabel>Missing</IonLabel>
+          </IonSegmentButton>
+        </IonSegment>
+      </div>
       <IonList>
         {results.map((key) => (
           <BusListEntry
