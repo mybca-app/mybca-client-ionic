@@ -19,6 +19,7 @@ import { pb } from "../network/eventsPocketbase";
 import { Event } from "../network/pocketbase/pocketbase";
 import { formatLocalDate } from "../helpers/dateFormat";
 import { ScheduleCard } from "../components/home/ScheduleCard";
+import { NewsCard } from "../components/home/NewsCard";
 
 function getTimeGreeting(): string {
   const hour = new Date().getHours();
@@ -66,6 +67,13 @@ export const HomePage: React.FC = () => {
   } = $api.useQuery("get", "/api/Links");
 
   const {
+    data: newsData,
+    error: newsError,
+    isLoading: newsIsLoading,
+    refetch: newsRefetch,
+  } = $api.useQuery("get", "/api/News/Latest");
+
+  const {
     data: eventsData,
     error: eventsError,
     isLoading: eventsIsLoading,
@@ -108,6 +116,7 @@ export const HomePage: React.FC = () => {
             await lunchRefetch();
             await linksRefetch();
             await eventsRefetch();
+            await newsRefetch();
             event.detail.complete();
           }}
         >
@@ -121,6 +130,12 @@ export const HomePage: React.FC = () => {
 
         {scheduleData && Object.keys(scheduleData).length > 0
           && <ScheduleCard schedule={scheduleData?.schedule || null} />}
+
+        <NewsCard
+          newsData={newsData?.data ?? null}
+          isLoading={newsIsLoading}
+          error={newsError}
+        />
 
         <EventsCard
           eventData={(eventsData?.items as unknown[] as Event[]) ?? []}
