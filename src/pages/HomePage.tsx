@@ -128,7 +128,7 @@ export const HomePage: React.FC = () => {
 
         <IonGrid className="ion-no-padding">
           <IonRow>
-            <IonCol>
+            <IonCol size="12" sizeMd="6">
               <BusCard
                 busData={busData?.data ?? {}}
                 isLoading={busIsLoading}
@@ -142,7 +142,7 @@ export const HomePage: React.FC = () => {
                 error={lunchError}
               />
             </IonCol>
-            <IonCol>
+            <IonCol size="12" sizeMd="6">
               <NewsCard
                 newsData={newsData?.data ?? null}
                 isLoading={newsIsLoading}
