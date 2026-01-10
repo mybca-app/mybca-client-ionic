@@ -1,9 +1,12 @@
 import {
+  IonCol,
   IonContent,
+  IonGrid,
   IonHeader,
   IonPage,
   IonRefresher,
   IonRefresherContent,
+  IonRow,
   IonText,
   IonTitle,
   IonToolbar,
@@ -122,36 +125,52 @@ export const HomePage: React.FC = () => {
         >
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
-        <BusCard
-          busData={busData?.data ?? {}}
-          isLoading={busIsLoading}
-          error={busError}
-        />
 
-        {scheduleData && Object.keys(scheduleData).length > 0
-          && <ScheduleCard schedule={scheduleData?.schedule || null} />}
+        <IonGrid className="ion-no-padding">
+          <IonRow>
+            <IonCol size="12" sizeMd="6">
+              <BusCard
+                busData={busData?.data ?? {}}
+                isLoading={busIsLoading}
+                error={busError}
+              />
+              {scheduleData && Object.keys(scheduleData).length > 0
+                && <ScheduleCard schedule={scheduleData?.schedule || null} />}
+              <LunchCard
+                lunchData={lunchData?.data}
+                isLoading={lunchIsLoading}
+                error={lunchError}
+              />
+            </IonCol>
+            <IonCol size="12" sizeMd="6">
+              <NewsCard
+                newsData={newsData?.data ?? null}
+                isLoading={newsIsLoading}
+                error={newsError}
+              />
+              <EventsCard
+                eventData={(eventsData?.items as unknown[] as Event[]) ?? []}
+                isLoading={eventsIsLoading}
+                error={eventsError}
+              />
+              <LinksCard
+                linksData={linksData?.data ?? []}
+                isLoading={linksIsLoading}
+                error={linksError}
+              />
+            </IonCol>
+          </IonRow>
+        </IonGrid>
 
-        <NewsCard
-          newsData={newsData?.data ?? null}
-          isLoading={newsIsLoading}
-          error={newsError}
-        />
 
-        <EventsCard
-          eventData={(eventsData?.items as unknown[] as Event[]) ?? []}
-          isLoading={eventsIsLoading}
-          error={eventsError}
-        />
-        <LunchCard
-          lunchData={lunchData?.data}
-          isLoading={lunchIsLoading}
-          error={lunchError}
-        />
-        <LinksCard
-          linksData={linksData?.data ?? []}
-          isLoading={linksIsLoading}
-          error={linksError}
-        />
+
+
+
+
+
+
+
+
       </IonContent>
     </IonPage>
   );

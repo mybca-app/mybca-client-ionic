@@ -39,6 +39,7 @@ import {
   getFavorites,
   setFavorites as storeFavorites,
 } from "../storage/favoriteBus";
+import { Haptics, ImpactStyle } from "@capacitor/haptics";
 
 function openBusSpreadsheet(): void {
   (async () => {
@@ -80,6 +81,8 @@ export const BusListPage: React.FC = () => {
   }, [favorites]);
 
   const toggleFavorite = async (bus: string) => {
+    await Haptics.impact({ style: ImpactStyle.Medium });
+    
     let isDisable = false;
     setFavorites((prev) => {
       if (prev.includes(bus)) {
