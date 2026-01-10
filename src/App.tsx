@@ -45,8 +45,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BusDetailPage } from "./pages/BusDetailPage";
 import { EventsPage } from "./pages/EventsPage";
 import { PermissionsBootstrap } from "./PermissionsBootstrap";
+import { SplashScreen } from "@capacitor/splash-screen";
 
 setupIonicReact();
+
+await SplashScreen.show({
+  showDuration: 2000,
+  autoHide: true,
+});
 
 const queryClient = new QueryClient();
 
