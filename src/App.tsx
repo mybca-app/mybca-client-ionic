@@ -49,10 +49,12 @@ import { SplashScreen } from "@capacitor/splash-screen";
 
 setupIonicReact();
 
-await SplashScreen.show({
-  showDuration: 2000,
-  autoHide: true,
-});
+(async () => {
+  await SplashScreen.show({
+    showDuration: 2000,
+    autoHide: true,
+  });
+})();
 
 const queryClient = new QueryClient();
 
