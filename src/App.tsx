@@ -9,7 +9,7 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { bus, calendar, home } from "ionicons/icons";
+import { bus, calendar, home, newspaper } from "ionicons/icons";
 import { Redirect, Route } from "react-router-dom";
 import { BusListPage } from "./pages/BusListPage";
 import { HomePage } from "./pages/HomePage";
@@ -46,6 +46,7 @@ import { BusDetailPage } from "./pages/BusDetailPage";
 import { EventsPage } from "./pages/EventsPage";
 import { PermissionsBootstrap } from "./PermissionsBootstrap";
 import { SplashScreen } from "@capacitor/splash-screen";
+import { NewsPage } from "./pages/NewsPage";
 
 setupIonicReact();
 
@@ -71,6 +72,8 @@ const App: React.FC = () => (
             </Route>
             <Route exact path="/buses/list" component={BusListPage} />
             <Route exact path="/buses/:bus/detail" component={BusDetailPage} />
+            
+            <Route exact path="/news/list" component={NewsPage} />
 
             <Route exact path="/events/list">
               <EventsPage />
@@ -87,6 +90,10 @@ const App: React.FC = () => (
             <IonTabButton tab="buslist" href="/buses/list">
               <IonIcon aria-hidden="true" icon={bus} />
               <IonLabel>Buses</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="news" href="/news/list">
+              <IonIcon aria-hidden="true" icon={newspaper} />
+              <IonLabel>News</IonLabel>
             </IonTabButton>
             <IonTabButton tab="events" href="/events/list">
               <IonIcon aria-hidden="true" icon={calendar} />
