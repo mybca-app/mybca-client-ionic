@@ -29,7 +29,7 @@ export const NewsList: React.FC<NewsListProps> = ({ data }) => {
       ) : (
         <IonList>
           {data.map((story) => (
-            <NewsListEntry storyId={story.id} key={story.id} imageLink={story.imageLink} title={story.title} createdAt={new Date(story.createdAt)} />
+            <NewsListEntry key={story.id} imageLink={story.imageLink} title={story.title} createdAt={new Date(story.createdAt)} storyLink={story.link} />
           ))}
         </IonList>
       )}
