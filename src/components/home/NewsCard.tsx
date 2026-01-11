@@ -52,7 +52,7 @@ export const NewsCard: React.FC<NewsCardProps> = ({
       </IonCardContent>
 
       {newsData && (
-        <IonButton fill="clear" href={newsData.link} target="_blank">
+        <IonButton fill="clear" routerLink={`/news/${newsData.id}/detail`}>
           Read more
           <IonIcon icon={arrowForward} slot="end" />
         </IonButton>

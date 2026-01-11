@@ -47,6 +47,7 @@ import { EventsPage } from "./pages/EventsPage";
 import { PermissionsBootstrap } from "./PermissionsBootstrap";
 import { SplashScreen } from "@capacitor/splash-screen";
 import { NewsPage } from "./pages/NewsPage";
+import { NewsDetailPage } from "./pages/NewsDetailPage";
 
 setupIonicReact();
 
@@ -74,6 +75,7 @@ const App: React.FC = () => (
             <Route exact path="/buses/:bus/detail" component={BusDetailPage} />
             
             <Route exact path="/news/list" component={NewsPage} />
+            <Route exact path="/news/:storyId/detail" component={NewsDetailPage} />
 
             <Route exact path="/events/list">
               <EventsPage />

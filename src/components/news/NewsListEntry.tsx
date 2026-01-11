@@ -1,4 +1,5 @@
 import { IonItem, IonLabel, IonThumbnail } from "@ionic/react";
+import { decodeHtml } from "../../helpers/escape";
 
 type NewsListEntryProps = {
   storyId: number;
@@ -7,20 +8,15 @@ type NewsListEntryProps = {
   createdAt: Date;
 };
 
-function decodeHtml(input: string) {
-  const txt = document.createElement("textarea");
-  txt.innerHTML = input;
-  return txt.value;
-}
-
 export const NewsListEntry: React.FC<NewsListEntryProps> = ({ storyId, title, imageLink, createdAt }) => {
   return (
     <IonItem
       style={{ "--background": "transparent" }}
+      routerLink={`/news/${storyId}/detail`}
     >
       {imageLink && (
         <IonThumbnail slot="start">
-          <img src={imageLink} alt={`Featured image for article "${title}"`} width="300" />
+          <img src={imageLink} alt={`Featured image for article "${title}"`} />
         </IonThumbnail>
       )}
       <IonLabel>

@@ -12,7 +12,7 @@ import { components } from "../../network/openapi/v1";
 import { formatTimeByLocale } from "../../helpers/dateFormat";
 
 type ScheduleCardProps = {
-  schedule: components["schemas"]["Schedule"];
+  schedule: components["schemas"]["ScheduleDto"];
 };
 
 export const ScheduleCard: React.FC<ScheduleCardProps> = ({
