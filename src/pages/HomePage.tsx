@@ -161,16 +161,6 @@ export const HomePage: React.FC = () => {
             </IonCol>
           </IonRow>
         </IonGrid>
-
-
-
-
-
-
-
-
-
-
       </IonContent>
     </IonPage>
   );

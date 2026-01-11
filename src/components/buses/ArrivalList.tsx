@@ -3,7 +3,7 @@ import { components } from "../../network/openapi/v1";
 import { ArrivalListEntry } from "./ArrivalListEntry";
 
 type ArrivalListProps = {
-  data: components["schemas"]["BusArrival"][];
+  data: components["schemas"]["BusArrivalDto"][];
 };
 
 export const ArrivalList: React.FC<ArrivalListProps> = ({ data }) => {
