@@ -67,10 +67,47 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "text/plain": components["schemas"]["BusArrival"][];
-                        "application/json": components["schemas"]["BusArrival"][];
-                        "text/json": components["schemas"]["BusArrival"][];
+                        "text/plain": components["schemas"]["BusArrivalDto"][];
+                        "application/json": components["schemas"]["BusArrivalDto"][];
+                        "text/json": components["schemas"]["BusArrivalDto"][];
                     };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/Bus/Reports/Generate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Generates a CSV report of all bus arrival data */
+        get: {
+            parameters: {
+                query?: {
+                    start?: string;
+                    end?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
                 };
             };
         };
@@ -120,7 +157,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/News/Latest": {
+    "/api/News/Stories/Latest": {
         parameters: {
             query?: never;
             header?: never;
@@ -143,9 +180,9 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "text/plain": components["schemas"]["NewsApiResponseOfNewsStory"];
-                        "application/json": components["schemas"]["NewsApiResponseOfNewsStory"];
-                        "text/json": components["schemas"]["NewsApiResponseOfNewsStory"];
+                        "text/plain": components["schemas"]["NewsApiResponseOfNewsStoryDto"];
+                        "application/json": components["schemas"]["NewsApiResponseOfNewsStoryDto"];
+                        "text/json": components["schemas"]["NewsApiResponseOfNewsStoryDto"];
                     };
                 };
             };
@@ -158,7 +195,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/News/List": {
+    "/api/News/Stories": {
         parameters: {
             query?: never;
             header?: never;
@@ -181,9 +218,49 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "text/plain": components["schemas"]["NewsApiResponseOfNewsStory"];
-                        "application/json": components["schemas"]["NewsApiResponseOfNewsStory"];
-                        "text/json": components["schemas"]["NewsApiResponseOfNewsStory"];
+                        "text/plain": components["schemas"]["NewsApiResponseOfIEnumerableOfNewsStoryDto"];
+                        "application/json": components["schemas"]["NewsApiResponseOfIEnumerableOfNewsStoryDto"];
+                        "text/json": components["schemas"]["NewsApiResponseOfIEnumerableOfNewsStoryDto"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/News/Stories/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Retrieves a story by its ID */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path: {
+                    id: number;
+                };
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/plain": components["schemas"]["NewsStoryDto2"];
+                        "application/json": components["schemas"]["NewsStoryDto2"];
+                        "text/json": components["schemas"]["NewsStoryDto2"];
                     };
                 };
             };
@@ -219,9 +296,9 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "text/plain": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
-                        "application/json": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
-                        "text/json": components["schemas"]["NutrisliceApiResponseOfMenuWeek"];
+                        "text/plain": components["schemas"]["NutrisliceApiResponseOfMenuWeekDto"];
+                        "application/json": components["schemas"]["NutrisliceApiResponseOfMenuWeekDto"];
+                        "text/json": components["schemas"]["NutrisliceApiResponseOfMenuWeekDto"];
                     };
                 };
             };
@@ -257,9 +334,9 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "text/plain": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
-                        "application/json": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
-                        "text/json": components["schemas"]["NutrisliceApiResponseOfMenuDay"];
+                        "text/plain": components["schemas"]["NutrisliceApiResponseOfMenuDayDto"];
+                        "application/json": components["schemas"]["NutrisliceApiResponseOfMenuDayDto"];
+                        "text/json": components["schemas"]["NutrisliceApiResponseOfMenuDayDto"];
                     };
                 };
             };
@@ -297,9 +374,9 @@ export interface paths {
                         [name: string]: unknown;
                     };
                     content: {
-                        "text/plain": components["schemas"]["ScheduleDay"];
-                        "application/json": components["schemas"]["ScheduleDay"];
-                        "text/json": components["schemas"]["ScheduleDay"];
+                        "text/plain": components["schemas"]["ScheduleDayDto"];
+                        "application/json": components["schemas"]["ScheduleDayDto"];
+                        "text/json": components["schemas"]["ScheduleDayDto"];
                     };
                 };
             };
@@ -325,15 +402,13 @@ export interface components {
             /** Format: date-time */
             expiry: string | null;
         };
-        BusArrival: {
-            /** Format: int32 */
-            id?: number;
+        BusArrivalDto: {
             busName: string | null;
             busPosition: string | null;
             /** Format: date-time */
-            arrivalTime?: string;
+            arrivalTime: string;
         };
-        FoodItem: {
+        FoodItemDto: {
             /** Format: int32 */
             id: number;
             name: string | null;
@@ -341,86 +416,104 @@ export interface components {
             subtext: string | null;
             imageUrl: string | null;
         };
-        Link: {
+        LinkApiResponse: {
+            /** Format: int32 */
+            count: number;
+            data: components["schemas"]["LinkDto"][];
+        };
+        LinkDto: {
             name: string;
             /** Format: uri */
             target: string;
         };
-        LinkApiResponse: {
-            /** Format: int32 */
-            count: number;
-            data: components["schemas"]["Link"][];
-        };
-        MenuDay: {
+        MenuDayDto: {
             date: string | null;
-            menuItems: components["schemas"]["MenuItem"][];
+            menuItems: components["schemas"]["MenuItemDto"][];
         };
-        MenuDay2: {
+        MenuDayDto2: {
             date: string | null;
-            menuItems: components["schemas"]["MenuItem"][];
+            menuItems: components["schemas"]["MenuItemDto"][];
         } | null;
-        MenuItem: {
+        MenuItemDto: {
             /** Format: date-time */
             date: string | null;
             /** Format: int32 */
             position: number;
             isSectionTitle: boolean;
             text: string | null;
-            food: components["schemas"]["FoodItem"];
+            food: components["schemas"]["FoodItemDto"];
             /** Format: uint32 */
             stationID: number;
             isStationHeader: boolean;
             image: string | null;
             category: string | null;
         };
-        MenuWeek: {
+        MenuWeekDto: {
             startDate: string | null;
             displayName: string | null;
-            days: components["schemas"]["MenuDay"][];
+            days: components["schemas"]["MenuDayDto"][];
         } | null;
-        NewsApiResponseOfNewsStory: {
-            data: components["schemas"]["NewsStory"];
+        NewsApiResponseOfIEnumerableOfNewsStoryDto: {
+            data: components["schemas"]["NewsStoryDto2"][] | null;
             /** Format: date-time */
             expiry: string | null;
         };
-        NewsStory: {
+        NewsApiResponseOfNewsStoryDto: {
+            data: components["schemas"]["NewsStoryDto"];
+            /** Format: date-time */
+            expiry: string | null;
+        };
+        NewsStoryDto: {
+            /** Format: int32 */
+            id: number;
             title: string;
             link: string;
             imageLink: string | null;
+            contentHtml: string | null;
             /** Format: date-time */
             createdAt: string;
         } | null;
-        NutrisliceApiResponseOfMenuDay: {
-            data: components["schemas"]["MenuDay2"];
+        NewsStoryDto2: {
+            /** Format: int32 */
+            id: number;
+            title: string;
+            link: string;
+            imageLink: string | null;
+            contentHtml: string | null;
+            /** Format: date-time */
+            createdAt: string;
+        };
+        NutrisliceApiResponseOfMenuDayDto: {
+            data: components["schemas"]["MenuDayDto2"];
             /** Format: date-time */
             expiry: string | null;
         };
-        NutrisliceApiResponseOfMenuWeek: {
-            data: components["schemas"]["MenuWeek"];
+        NutrisliceApiResponseOfMenuWeekDto: {
+            data: components["schemas"]["MenuWeekDto"];
             /** Format: date-time */
             expiry: string | null;
         };
-        Schedule: {
+        ScheduleDayDto: {
             /** Format: int32 */
-            id?: number;
-            name: string;
-            items: components["schemas"]["ScheduleItem"][];
-        } | null;
-        ScheduleDay: {
-            /** Format: int32 */
-            id?: number;
+            id: number;
             /** Format: date */
-            day?: string;
+            day: string;
             /** Format: int32 */
-            scheduleId?: number;
-            schedule?: components["schemas"]["Schedule"];
+            scheduleId: number;
+            schedule: components["schemas"]["ScheduleDto"];
         };
-        ScheduleItem: {
+        ScheduleDto: {
+            /** Format: int32 */
+            id: number;
+            name: string;
+            items: components["schemas"]["ScheduleItemDto"][];
+        } | null;
+        ScheduleItemDto: {
             periodName: string;
             /** Format: time */
-            startTime?: string;
+            startTime: string;
             /** Format: time */
-            endTime?: string;
+            endTime: string;
         };
     };
     responses: never;

@@ -11,7 +11,7 @@ import { components } from "../../network/openapi/v1";
 import { Loading } from "../shared/Loading";
 
 type LinksCardProps = {
-  linksData: components["schemas"]["Link"][];
+  linksData: components["schemas"]["LinkDto"][];
   isLoading: boolean;
   error: Error | null;
 };

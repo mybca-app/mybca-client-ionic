@@ -13,7 +13,7 @@ import { components } from "../../network/openapi/v1";
 import { Loading } from "../shared/Loading";
 
 type NewsCardProps = {
-  newsData: components["schemas"]["NewsStory"];
+  newsData: components["schemas"]["NewsStoryDto"];
   isLoading: boolean;
   error: Error | null;
 };

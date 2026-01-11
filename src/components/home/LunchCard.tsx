@@ -14,7 +14,7 @@ import { components } from "../../network/openapi/v1";
 import { Loading } from "../shared/Loading";
 
 type LunchCardProps = {
-  lunchData?: components["schemas"]["MenuDay2"];
+  lunchData?: components["schemas"]["MenuDayDto2"];
   isLoading: boolean;
   error: Error | null;
 };

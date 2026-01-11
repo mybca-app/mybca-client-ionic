@@ -74,7 +74,7 @@ export const HomePage: React.FC = () => {
     error: newsError,
     isLoading: newsIsLoading,
     refetch: newsRefetch,
-  } = $api.useQuery("get", "/api/News/Latest");
+  } = $api.useQuery("get", "/api/News/Stories/Latest");
 
   const {
     data: eventsData,
