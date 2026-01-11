@@ -28,6 +28,7 @@ export const NewsCard: React.FC<NewsCardProps> = ({
       {newsData && newsData.imageLink && (
         <img src={newsData.imageLink} style={{
           aspectRatio: "16 / 9",
+          objectFit: "cover",
         }} />
       )}
       <IonCardHeader>
