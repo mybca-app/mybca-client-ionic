@@ -11,7 +11,7 @@ export const ArrivalList: React.FC<ArrivalListProps> = ({ data }) => {
     <>
       <IonList>
         <IonListHeader>
-          <IonLabel>Arrival history</IonLabel>
+          <IonLabel>Arrival History</IonLabel>
         </IonListHeader>
         {data.map((arrival) => {
           const arrivalText = arrival.arrivalTime ?? "";

@@ -24,7 +24,7 @@ export const LinksCard: React.FC<LinksCardProps> = ({
   return (
     <IonCard>
       <IonCardHeader>
-        <IonCardTitle>Quick links</IonCardTitle>
+        <IonCardTitle>Quick Links</IonCardTitle>
       </IonCardHeader>
       <IonCardContent>
         {isLoading && <Loading message="Loading quick links..." />}

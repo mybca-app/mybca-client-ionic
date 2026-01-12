@@ -27,7 +27,7 @@ export const EventsCard: React.FC<EventsCardProps> = ({
   return (
     <IonCard>
       <IonCardHeader>
-        <IonCardTitle>Upcoming events</IonCardTitle>
+        <IonCardTitle>Upcoming Events</IonCardTitle>
       </IonCardHeader>
 
       {isLoading && <Loading message="Loading events..." />}
@@ -55,7 +55,7 @@ export const EventsCard: React.FC<EventsCardProps> = ({
       )}
 
       <IonButton fill="clear" routerLink="/events/list">
-        Go to events
+        Go to Events
         <IonIcon icon={arrowForward} slot="end" />
       </IonButton>
     </IonCard>

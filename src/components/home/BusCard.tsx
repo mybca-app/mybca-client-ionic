@@ -46,7 +46,7 @@ export const BusCard: React.FC<BusCardProps> = ({
   return (
     <IonCard>
       <IonCardHeader>
-        <IonCardTitle>Starred buses</IonCardTitle>
+        <IonCardTitle>Starred Buses</IonCardTitle>
       </IonCardHeader>
 
       {isLoading && <Loading message="Loading buses..." />}
@@ -86,7 +86,7 @@ export const BusCard: React.FC<BusCardProps> = ({
       )}
 
       <IonButton fill="clear" routerLink="/buses/list">
-        Go to buses
+        Go to Buses
         <IonIcon icon={arrowForward} slot="end" />
       </IonButton>
     </IonCard>

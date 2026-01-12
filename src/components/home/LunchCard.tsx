@@ -30,7 +30,7 @@ export const LunchCard: React.FC<LunchCardProps> = ({
   return (
     <IonCard>
       <IonCardHeader>
-        <IonCardTitle>Lunch menu</IonCardTitle>
+        <IonCardTitle>Lunch Menu</IonCardTitle>
         <IonCardSubtitle>{new Date().toLocaleDateString()}</IonCardSubtitle>
       </IonCardHeader>
       <IonCardContent>

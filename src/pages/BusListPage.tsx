@@ -118,7 +118,7 @@ export const BusListPage: React.FC = () => {
             >
               <IonList>
                 {data?.expiry && (
-                  <IonItem>
+                  <IonItem color="light">
                     <IonIcon slot="start" icon={timeOutline} />
                     <IonLabel>
                       Expires at {new Date(data.expiry).toLocaleTimeString()}
@@ -126,17 +126,18 @@ export const BusListPage: React.FC = () => {
                   </IonItem>
                 )}
                 {Capacitor.isNativePlatform() ? (
-                  <IonItem button onClick={openBusSpreadsheet}>
+                  <IonItem button onClick={openBusSpreadsheet} color="light">
                     <IonIcon slot="start" icon={linkOutline} />
-                    <IonLabel>View spreadsheet</IonLabel>
+                    <IonLabel>View Source</IonLabel>
                   </IonItem>
                 ) : (
                   <IonItem
                     href={import.meta.env.VITE_BUS_SHEET_URL}
                     target="_blank"
+                    color="light"
                   >
                     <IonIcon slot="start" icon={linkOutline} />
-                    <IonLabel>View spreadsheet</IonLabel>
+                    <IonLabel>View Source</IonLabel>
                   </IonItem>
                 )}
               </IonList>
