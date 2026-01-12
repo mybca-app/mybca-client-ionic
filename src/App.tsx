@@ -9,7 +9,7 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { bus, calendar, home, newspaper } from "ionicons/icons";
+import { bus, calendar, home, menu, newspaper } from "ionicons/icons";
 import { Redirect, Route } from "react-router-dom";
 import { BusListPage } from "./pages/BusListPage";
 import { HomePage } from "./pages/HomePage";
@@ -41,12 +41,13 @@ import "@ionic/react/css/text-transformation.css";
 /* import '@ionic/react/css/palettes/dark.class.css'; */
 import "@ionic/react/css/palettes/dark.system.css";
 
+import { SplashScreen } from "@capacitor/splash-screen";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BusDetailPage } from "./pages/BusDetailPage";
 import { EventsPage } from "./pages/EventsPage";
-import { PermissionsBootstrap } from "./PermissionsBootstrap";
-import { SplashScreen } from "@capacitor/splash-screen";
+import { MenuPage } from "./pages/MenuPage";
 import { NewsPage } from "./pages/NewsPage";
+import { PermissionsBootstrap } from "./PermissionsBootstrap";
 
 setupIonicReact();
 
@@ -78,6 +79,9 @@ const App: React.FC = () => (
             <Route exact path="/events/list">
               <EventsPage />
             </Route>
+
+            <Route exact path="/menu" component={MenuPage} />
+
             <Route exact path="/">
               <Redirect to="/home" />
             </Route>
@@ -91,13 +95,13 @@ const App: React.FC = () => (
               <IonIcon aria-hidden="true" icon={bus} />
               <IonLabel>Buses</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="news" href="/news/list">
-              <IonIcon aria-hidden="true" icon={newspaper} />
-              <IonLabel>News</IonLabel>
-            </IonTabButton>
             <IonTabButton tab="events" href="/events/list">
               <IonIcon aria-hidden="true" icon={calendar} />
               <IonLabel>Events</IonLabel>
+            </IonTabButton>
+            <IonTabButton tab="menu" href="/menu">
+              <IonIcon aria-hidden="true" icon={menu} />
+              <IonLabel>Menu</IonLabel>
             </IonTabButton>
           </IonTabBar>
         </IonTabs>
