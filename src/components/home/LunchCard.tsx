@@ -1,9 +1,11 @@
 import {
+  IonButton,
   IonCard,
   IonCardContent,
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  IonIcon,
   IonItem,
   IonItemDivider,
   IonLabel,
@@ -12,6 +14,7 @@ import {
 } from "@ionic/react";
 import { components } from "../../network/openapi/v1";
 import { Loading } from "../shared/Loading";
+import { arrowForward } from "ionicons/icons";
 
 type LunchCardProps = {
   lunchData?: components["schemas"]["MenuDayDto2"];
@@ -81,6 +84,11 @@ export const LunchCard: React.FC<LunchCardProps> = ({
             </IonList>
           ))}
       </IonCardContent>
+
+      <IonButton fill="clear" routerLink="/lunch/list">
+        More Menus
+        <IonIcon icon={arrowForward} slot="end" />
+      </IonButton>
     </IonCard>
   );
 };

@@ -48,6 +48,7 @@ import { EventsPage } from "./pages/EventsPage";
 import { MenuPage } from "./pages/MenuPage";
 import { NewsPage } from "./pages/NewsPage";
 import { PermissionsBootstrap } from "./PermissionsBootstrap";
+import { LunchPage } from "./pages/LunchPage";
 
 setupIonicReact();
 
@@ -79,6 +80,8 @@ const App: React.FC = () => (
             <Route exact path="/events/list">
               <EventsPage />
             </Route>
+
+            <Route exact path="/lunch/list" component={LunchPage} />
 
             <Route exact path="/menu" component={MenuPage} />
 

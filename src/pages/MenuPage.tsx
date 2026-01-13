@@ -52,7 +52,7 @@ export const MenuPage: React.FC = () => {
             <IonIcon color="danger" slot="start" icon={calendar} />
             <IonLabel>Events</IonLabel>
           </IonItem>
-          <IonItem routerLink="/events/list">
+          <IonItem routerLink="/lunch/list">
             <IonIcon color="success" slot="start" icon={fastFood} />
             <IonLabel>Lunch</IonLabel>
           </IonItem>
