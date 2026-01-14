@@ -162,7 +162,7 @@ export const BusListPage: React.FC = () => {
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
 
-        {isLoading && <Loading message="Loading buses..." />}
+        {/*isLoading && <Loading message="Loading buses..." />*/}
 
         {error && (
           <div className="ion-text-center ion-padding">
@@ -176,9 +176,9 @@ export const BusListPage: React.FC = () => {
           </div>
         )}
 
-        {data && (
+        {(data || true) && (
           <BusList
-            data={data.data}
+            data={data?.data ?? {}}
             favorites={favorites}
             onToggleFavorite={toggleFavorite}
           />

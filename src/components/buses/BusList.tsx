@@ -1,6 +1,7 @@
 import { IonLabel, IonList, IonSearchbar, IonSegment, IonSegmentButton, IonToolbar } from "@ionic/react";
 import { useState } from "react";
 import { BusListEntry } from "./BusListEntry";
+import { BusListEntrySkeleton } from "./BusListEntrySkeleton";
 
 type BusListProps = {
   data: Record<string, string>;
@@ -58,7 +59,7 @@ export const BusList: React.FC<BusListProps> = ({
         </IonSegment>
       </div>
       <IonList>
-        {results.map((key) => (
+        {results && results.length > 0 ? results.map((key) => (
           <BusListEntry
             key={key}
             town={key}
@@ -66,7 +67,9 @@ export const BusList: React.FC<BusListProps> = ({
             isFavorite={favorites.includes(key)}
             onToggleFavorite={onToggleFavorite}
           />
-        ))}
+        )) : (
+          new Array(40).fill('').map((_, index) => <BusListEntrySkeleton key={index} />)
+        )}
       </IonList>
     </>
   );
