@@ -59,7 +59,7 @@ export const BusList: React.FC<BusListProps> = ({
         </IonSegment>
       </div>
       <IonList>
-        {results && results.length > 0 ? results.map((key) => (
+        {data && sortedKeys.length > 0 ? results.map((key) => (
           <BusListEntry
             key={key}
             town={key}
