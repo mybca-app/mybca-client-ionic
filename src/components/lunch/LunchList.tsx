@@ -60,6 +60,7 @@ export const LunchList: React.FC<LunchListProps> = ({ data }) => {
                 if (item.isSectionTitle || item.isStationHeader) {
                   return (
                     <IonItemDivider
+                      key={index}
                     >
                       <IonLabel>
                         {item.text}

@@ -60,6 +60,7 @@ export const LunchCard: React.FC<LunchCardProps> = ({
                       <IonItemDivider
                         className="ion-no-padding ion-padding-top"
                         style={{ "--background": "transparent" }}
+                        key={index}
                       >
                         <IonLabel>{item.text}</IonLabel>
                       </IonItemDivider>
