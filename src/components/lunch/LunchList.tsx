@@ -101,42 +101,45 @@ export const LunchList: React.FC<LunchListProps> = ({ data }) => {
         breakpoints={[0, 0.75]}
         expandToScroll={false}
       >
-        <IonContent className="ion-padding-horizontal">
-          <IonText>
-            <h1 style={{ fontWeight: "bold" }}>{selectedItem?.name}</h1>
-          </IonText>
+        <IonContent>
           {selectedItem?.imageUrl && <img src={selectedItem.imageUrl} alt={selectedItem.name ?? ""} />}
-          {selectedItem?.description && (
-            <>
-              <IonText>
-                <h2 style={{ fontWeight: "bold" }}>Description</h2>
-              </IonText>
-              <p>{selectedItem?.description}</p>
-              {selectedItem?.nutritionInfo && (
-                <>
-                  <IonText>
-                    <h2 style={{ fontWeight: "bold" }}>Nutrition Info</h2>
-                  </IonText>
-                  <IonList inset={false} style={{ background: "transparent" }} className="ion-no-padding ion-padding-bottom">
-                    <NutritionItem name="Calories" value={selectedItem.nutritionInfo.calories} />
-                    <NutritionItem name="Saturated Fat" value={selectedItem.nutritionInfo.saturatedFat} unit="g" />
-                    <NutritionItem name="Trans Fat" value={selectedItem.nutritionInfo.transFat} unit="g" />
-                    <NutritionItem name="Carbohydrates" value={selectedItem.nutritionInfo.carbs} unit="g" />
-                    <NutritionItem name="Sugar" value={selectedItem.nutritionInfo.sugar} unit="g" />
-                    <NutritionItem name="Added Sugar" value={selectedItem.nutritionInfo.addedSugar} unit="g" />
-                    <NutritionItem name="Protein" value={selectedItem.nutritionInfo.protein} unit="g" />
-                    <NutritionItem name="Fiber" value={selectedItem.nutritionInfo.fiber} unit="g" />
-                    <NutritionItem name="Sodium" value={selectedItem.nutritionInfo.sodium} unit="mg" />
-                    <NutritionItem name="Iron" value={selectedItem.nutritionInfo.iron} unit="mg" />
-                    <NutritionItem name="Calcium" value={selectedItem.nutritionInfo.calcium} unit="mg" />
-                    <NutritionItem name="Vitamin C" value={selectedItem.nutritionInfo.vitaminC} unit="mg" />
-                    <NutritionItem name="Vitamin A" value={selectedItem.nutritionInfo.vitaminA} unit="iu" />
-                    <NutritionItem name="Vitamin D" value={selectedItem.nutritionInfo.vitaminD} unit="mg" />
-                  </IonList>
-                </>
-              )}
-            </>
-          )}
+          <div className="ion-padding">
+            <IonText>
+              <h1 style={{ fontWeight: "bold" }}>{selectedItem?.name}</h1>
+            </IonText>
+            {selectedItem?.description && (
+              <>
+                <IonText>
+                  <h3 style={{ fontWeight: "bold" }}>Description</h3>
+                </IonText>
+                <p>{selectedItem?.description}</p>
+                {selectedItem?.nutritionInfo && (
+                  <>
+                    <IonText>
+                      <h3 style={{ fontWeight: "bold" }}>Nutrition Info</h3>
+                    </IonText>
+                    <IonList inset={false} style={{ background: "transparent" }} className="ion-no-padding ion-padding-bottom">
+                      <NutritionItem name="Calories" value={selectedItem.nutritionInfo.calories} />
+                      <NutritionItem name="Saturated Fat" value={selectedItem.nutritionInfo.saturatedFat} unit="g" />
+                      <NutritionItem name="Trans Fat" value={selectedItem.nutritionInfo.transFat} unit="g" />
+                      <NutritionItem name="Carbohydrates" value={selectedItem.nutritionInfo.carbs} unit="g" />
+                      <NutritionItem name="Sugar" value={selectedItem.nutritionInfo.sugar} unit="g" />
+                      <NutritionItem name="Added Sugar" value={selectedItem.nutritionInfo.addedSugar} unit="g" />
+                      <NutritionItem name="Protein" value={selectedItem.nutritionInfo.protein} unit="g" />
+                      <NutritionItem name="Fiber" value={selectedItem.nutritionInfo.fiber} unit="g" />
+                      <NutritionItem name="Sodium" value={selectedItem.nutritionInfo.sodium} unit="mg" />
+                      <NutritionItem name="Iron" value={selectedItem.nutritionInfo.iron} unit="mg" />
+                      <NutritionItem name="Calcium" value={selectedItem.nutritionInfo.calcium} unit="mg" />
+                      <NutritionItem name="Vitamin C" value={selectedItem.nutritionInfo.vitaminC} unit="mg" />
+                      <NutritionItem name="Vitamin A" value={selectedItem.nutritionInfo.vitaminA} unit="iu" />
+                      <NutritionItem name="Vitamin D" value={selectedItem.nutritionInfo.vitaminD} unit="mg" />
+                    </IonList>
+                  </>
+                )}
+              </>
+            )}
+          </div>
+
         </IonContent>
       </IonModal>
     </>
