@@ -462,7 +462,50 @@ export interface components {
             description: string | null;
             subtext: string | null;
             imageUrl: string | null;
+            nutritionInfo: components["schemas"]["FoodItemNutritionInfoDto"];
         };
+        FoodItemNutritionInfoDto: {
+            /** Format: double */
+            calories: number | null;
+            /** Format: double */
+            fat: number | null;
+            /** Format: double */
+            saturatedFat: number | null;
+            /** Format: double */
+            transFat: number | null;
+            /** Format: double */
+            cholesterol: number | null;
+            /** Format: double */
+            carbs: number | null;
+            /** Format: double */
+            addedSugar: number | null;
+            /** Format: double */
+            sugar: number | null;
+            /** Format: double */
+            potassium: number | null;
+            /** Format: double */
+            sodium: number | null;
+            /** Format: double */
+            fiber: number | null;
+            /** Format: double */
+            protein: number | null;
+            /** Format: double */
+            iron: number | null;
+            /** Format: double */
+            calcium: number | null;
+            /** Format: double */
+            vitaminC: number | null;
+            /** Format: double */
+            vitaminA: number | null;
+            /** Format: double */
+            retinolEquivalents: number | null;
+            /** Format: double */
+            microgramsVitaminA: number | null;
+            /** Format: double */
+            vitaminD: number | null;
+            /** Format: double */
+            microgramsVitaminD: number | null;
+        } | null;
         LinkApiResponse: {
             /** Format: int32 */
             count: number;

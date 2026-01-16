@@ -9,7 +9,7 @@ import {
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { bus, calendar, home, menu, newspaper } from "ionicons/icons";
+import { bus, calendar, fastFood, home, menu, newspaper } from "ionicons/icons";
 import { Redirect, Route } from "react-router-dom";
 import { BusListPage } from "./pages/BusListPage";
 import { HomePage } from "./pages/HomePage";
@@ -74,7 +74,7 @@ const App: React.FC = () => (
             </Route>
             <Route exact path="/buses/list" component={BusListPage} />
             <Route exact path="/buses/:bus/detail" component={BusDetailPage} />
-            
+
             <Route exact path="/news/list" component={NewsPage} />
 
             <Route exact path="/events/list">
@@ -98,9 +98,9 @@ const App: React.FC = () => (
               <IonIcon aria-hidden="true" icon={bus} />
               <IonLabel>Buses</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="events" href="/events/list">
-              <IonIcon aria-hidden="true" icon={calendar} />
-              <IonLabel>Events</IonLabel>
+            <IonTabButton tab="lunch" href="/lunch/list">
+              <IonIcon aria-hidden="true" icon={fastFood} />
+              <IonLabel>Lunch</IonLabel>
             </IonTabButton>
             <IonTabButton tab="menu" href="/menu">
               <IonIcon aria-hidden="true" icon={menu} />
