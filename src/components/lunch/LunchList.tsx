@@ -1,4 +1,4 @@
-import { IonItem, IonItemDivider, IonLabel, IonList, IonText } from "@ionic/react";
+import { IonItem, IonItemDivider, IonLabel, IonThumbnail } from "@ionic/react";
 import { components } from "../../network/openapi/v1";
 
 type LunchListProps = {
@@ -25,7 +25,9 @@ export const LunchList: React.FC<LunchListProps> = ({ data }) => {
                   return (
                     <IonItemDivider
                     >
-                      <IonLabel>{item.text}</IonLabel>
+                      <IonLabel>
+                        {item.text}
+                      </IonLabel>
                     </IonItemDivider>
                   );
                 } else {
@@ -36,8 +38,16 @@ export const LunchList: React.FC<LunchListProps> = ({ data }) => {
                     <IonItem
                       key={index}
                     >
+                      {item.food.imageUrl && (
+                        <IonThumbnail slot="start">
+                          <img src={item.food.imageUrl} alt={item.food.name ?? ""} />
+                        </IonThumbnail>
+                      )}
                       <IonLabel color={isInsignificantDish ? "medium" : ""}>
-                        {item.food.name}
+                        <h2>
+                          {item.food.name}
+                        </h2>
+                        {item.food.description && <p>{item.food.description}</p>}
                       </IonLabel>
                     </IonItem>
                   );
