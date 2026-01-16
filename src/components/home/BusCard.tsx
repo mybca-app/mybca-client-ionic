@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 import { getFavorites } from "../../storage/favoriteBus";
 import { BusListEntry } from "../buses/BusListEntry";
 import { Loading } from "../shared/Loading";
+import { BusListEntrySkeleton } from "../buses/BusListEntrySkeleton";
 
 type BusCardProps = {
   busData: Record<string, string>;
@@ -49,7 +50,14 @@ export const BusCard: React.FC<BusCardProps> = ({
         <IonCardTitle>Starred Buses</IonCardTitle>
       </IonCardHeader>
 
-      {isLoading && <Loading message="Loading buses..." />}
+      {isLoading && (
+        <IonCardContent>
+          <IonList inset={false} style={{ background: "transparent" }}>
+            <BusListEntrySkeleton standalone />
+            <BusListEntrySkeleton standalone />
+          </IonList>
+        </IonCardContent>
+      )}
 
       {error && (
         <div className="ion-text-center ion-padding">
