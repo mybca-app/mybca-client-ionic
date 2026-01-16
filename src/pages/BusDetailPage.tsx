@@ -67,7 +67,7 @@ export const BusDetailPage: React.FC = () => {
               <IonLabel>
                 Company
               </IonLabel>
-                <IonLabel slot="end">
+                <IonLabel slot="end" color="medium">
                   {infoData.company ? infoData.company.name : "N/A"}
                 </IonLabel>
             </IonItem>
