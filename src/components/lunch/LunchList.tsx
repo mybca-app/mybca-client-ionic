@@ -1,6 +1,6 @@
-import { IonButton, IonContent, IonHeader, IonItem, IonItemDivider, IonLabel, IonList, IonModal, IonText, IonThumbnail, IonTitle, IonToolbar } from "@ionic/react";
-import { components } from "../../network/openapi/v1";
+import { IonContent, IonItem, IonItemDivider, IonLabel, IonList, IonModal, IonText, IonThumbnail } from "@ionic/react";
 import { useState } from "react";
+import { components } from "../../network/openapi/v1";
 
 type LunchListProps = {
   data: components["schemas"]["MenuDayDto2"];
@@ -100,29 +100,23 @@ export const LunchList: React.FC<LunchListProps> = ({ data }) => {
         breakpoints={[0, 0.75]}
         expandToScroll={false}
       >
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>{selectedItem?.name}</IonTitle>
-            <IonButton onClick={closeModal} slot="end" fill="clear">
-              Close
-            </IonButton>
-          </IonToolbar>
-        </IonHeader>
-
-        <IonContent className="ion-padding">
+        <IonContent className="ion-padding-horizontal">
+          <IonText>
+            <h1 style={{ fontWeight: "bold" }}>{selectedItem?.name}</h1>
+          </IonText>
           {selectedItem?.imageUrl && <img src={selectedItem.imageUrl} alt={selectedItem.name ?? ""} />}
           {selectedItem?.description && (
             <>
               <IonText>
-                <h3>Description</h3>
+                <h2 style={{ fontWeight: "bold" }}>Description</h2>
               </IonText>
               <p>{selectedItem?.description}</p>
               {selectedItem?.nutritionInfo && (
                 <>
                   <IonText>
-                    <h3>Nutrition Info</h3>
+                    <h2 style={{ fontWeight: "bold" }}>Nutrition Info</h2>
                   </IonText>
-                  <IonList inset={false} style={{ background: "transparent" }}>
+                  <IonList inset={false} style={{ background: "transparent" }} className="ion-no-padding ion-padding-bottom">
                     <NutritionItem name="Calories" value={selectedItem.nutritionInfo.calories} />
                     <NutritionItem name="Saturated Fat" value={selectedItem.nutritionInfo.saturatedFat} unit="g" />
                     <NutritionItem name="Trans Fat" value={selectedItem.nutritionInfo.transFat} unit="g" />
