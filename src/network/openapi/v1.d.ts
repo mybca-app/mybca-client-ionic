@@ -42,6 +42,46 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/Bus/Info": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Retrieves information about a bus */
+        get: {
+            parameters: {
+                query?: {
+                    bus?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/plain": components["schemas"]["BusInfoDto"];
+                        "application/json": components["schemas"]["BusInfoDto"];
+                        "text/json": components["schemas"]["BusInfoDto"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/Bus/History": {
         parameters: {
             query?: never;
@@ -407,6 +447,13 @@ export interface components {
             busPosition: string | null;
             /** Format: date-time */
             arrivalTime: string;
+        };
+        BusCompanyDto: {
+            name: string;
+        } | null;
+        BusInfoDto: {
+            name: string;
+            company: components["schemas"]["BusCompanyDto"];
         };
         FoodItemDto: {
             /** Format: int32 */

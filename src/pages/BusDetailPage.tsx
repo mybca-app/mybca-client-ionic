@@ -3,6 +3,10 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
+  IonItem,
+  IonLabel,
+  IonList,
+  IonListHeader,
   IonPage,
   IonText,
   IonTitle,
@@ -21,7 +25,13 @@ export const BusDetailPage: React.FC = () => {
   const { bus: busRaw } = useParams<BusDetailParams>();
   const bus = decodeURIComponent(busRaw);
 
-  const { data, error, isLoading } = $api.useQuery(
+  const { data: infoData, error: infoError, isLoading: infoIsLoading } = $api.useQuery(
+    "get",
+    "/api/Bus/Info",
+    { params: { query: { bus: bus } } },
+  );
+
+  const { data: histData, error: histError, isLoading: histIsLoading } = $api.useQuery(
     "get",
     "/api/Bus/History",
     { params: { query: { bus: bus } } },
@@ -38,9 +48,35 @@ export const BusDetailPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        {isLoading && <Loading message="Loading arrival history..." />}
+        {infoIsLoading && <Loading message="Loading bus info..." />}
 
-        {error && (
+        {infoError && (
+          <div className="ion-text-center ion-padding">
+            <IonText color="danger">
+              <p>Failed to load bus info.</p>
+            </IonText>
+          </div>
+        )}
+
+        {infoData && (
+          <IonList>
+            <IonListHeader>
+              <IonLabel>Bus Info</IonLabel>
+            </IonListHeader>
+            <IonItem style={{ "--background": "transparent" }}>
+              <IonLabel>
+                Company
+              </IonLabel>
+                <IonLabel slot="end">
+                  {infoData.company ? infoData.company.name : "N/A"}
+                </IonLabel>
+            </IonItem>
+          </IonList>
+        )}
+
+        {histIsLoading && <Loading message="Loading arrival history..." />}
+
+        {histError && (
           <div className="ion-text-center ion-padding">
             <IonText color="danger">
               <p>Failed to load arrival history.</p>
@@ -48,7 +84,7 @@ export const BusDetailPage: React.FC = () => {
           </div>
         )}
 
-        {data && <ArrivalList data={data} />}
+        {histData && <ArrivalList data={histData} />}
       </IonContent>
     </IonPage>
   );
