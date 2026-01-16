@@ -102,7 +102,13 @@ export const LunchList: React.FC<LunchListProps> = ({ data }) => {
         expandToScroll={false}
       >
         <IonContent>
-          {selectedItem?.imageUrl && <img src={selectedItem.imageUrl} alt={selectedItem.name ?? ""} />}
+          {selectedItem?.imageUrl && (
+            <img src={selectedItem.imageUrl} alt={selectedItem.name ?? ""} style={{
+              aspectRatio: "16 / 9",
+              objectFit: "cover",
+              width: "100%"
+            }} />
+          )}
           <div className="ion-padding">
             <IonText>
               <h1 style={{ fontWeight: "bold" }}>{selectedItem?.name}</h1>
