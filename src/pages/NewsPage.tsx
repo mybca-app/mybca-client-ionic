@@ -20,7 +20,7 @@ export const NewsPage: React.FC = () => {
     error,
     isLoading,
     refetch,
-  } = $api.useQuery("get", "/api/News/Stories");
+  } = $api.useQuery("get", "/api/news/stories");
 
   return (
     <IonPage>

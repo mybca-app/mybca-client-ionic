@@ -44,7 +44,7 @@ export const HomePage: React.FC = () => {
     refetch: scheduleRefetch,
   } = $api.useQuery(
     "get",
-    "/api/Schedule/Day/{date}",
+    "/api/schedules/{date}",
     { params: { path: { date: formatLocalDate() } } }
   );
 
@@ -53,28 +53,28 @@ export const HomePage: React.FC = () => {
     error: busError,
     isLoading: busIsLoading,
     refetch: busRefetch,
-  } = $api.useQuery("get", "/api/Bus/List");
+  } = $api.useQuery("get", "/api/buses");
 
   const {
     data: lunchData,
     error: lunchError,
     isLoading: lunchIsLoading,
     refetch: lunchRefetch,
-  } = $api.useQuery("get", "/api/Lunch/Day");
+  } = $api.useQuery("get", "/api/lunch/day");
 
   const {
     data: linksData,
     error: linksError,
     isLoading: linksIsLoading,
     refetch: linksRefetch,
-  } = $api.useQuery("get", "/api/Links");
+  } = $api.useQuery("get", "/api/links");
 
   const {
     data: newsData,
     error: newsError,
     isLoading: newsIsLoading,
     refetch: newsRefetch,
-  } = $api.useQuery("get", "/api/News/Stories/Latest");
+  } = $api.useQuery("get", "/api/news/stories/latest");
 
   const {
     data: eventsData,

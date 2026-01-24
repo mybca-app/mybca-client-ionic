@@ -27,13 +27,13 @@ export const BusDetailPage: React.FC = () => {
 
   const { data: infoData, error: infoError, isLoading: infoIsLoading } = $api.useQuery(
     "get",
-    "/api/Bus/Info",
+    "/api/buses/info",
     { params: { query: { bus: bus } } },
   );
 
   const { data: histData, error: histError, isLoading: histIsLoading } = $api.useQuery(
     "get",
-    "/api/Bus/History",
+    "/api/buses/history",
     { params: { query: { bus: bus } } },
   );
 

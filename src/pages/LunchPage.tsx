@@ -28,7 +28,7 @@ export const LunchPage: React.FC = () => {
     error,
     isLoading,
     refetch,
-  } = $api.useQuery("get", "/api/Lunch/Week");
+  } = $api.useQuery("get", "/api/lunch/week");
 
   const [startBound, setStartBound] = useState<string>("");
   const [endBound, setEndBound] = useState<string>("");

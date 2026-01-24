@@ -4,7 +4,7 @@
  */
 
 export interface paths {
-    "/api/Bus/List": {
+    "/api/bus/list": {
         parameters: {
             query?: never;
             header?: never;
@@ -42,7 +42,121 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/Bus/Info": {
+    "/api/buses/list": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Retrieves a map of each bus to its position */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/plain": components["schemas"]["BusApiResponse"];
+                        "application/json": components["schemas"]["BusApiResponse"];
+                        "text/json": components["schemas"]["BusApiResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/bus": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Retrieves a map of each bus to its position */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/plain": components["schemas"]["BusApiResponse"];
+                        "application/json": components["schemas"]["BusApiResponse"];
+                        "text/json": components["schemas"]["BusApiResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/buses": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Retrieves a map of each bus to its position */
+        get: {
+            parameters: {
+                query?: never;
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/plain": components["schemas"]["BusApiResponse"];
+                        "application/json": components["schemas"]["BusApiResponse"];
+                        "text/json": components["schemas"]["BusApiResponse"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/bus/info": {
         parameters: {
             query?: never;
             header?: never;
@@ -82,7 +196,47 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/Bus/History": {
+    "/api/buses/info": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Retrieves information about a bus */
+        get: {
+            parameters: {
+                query?: {
+                    bus?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/plain": components["schemas"]["BusInfoDto"];
+                        "application/json": components["schemas"]["BusInfoDto"];
+                        "text/json": components["schemas"]["BusInfoDto"];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/bus/history": {
         parameters: {
             query?: never;
             header?: never;
@@ -122,7 +276,47 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/Bus/Reports/Generate": {
+    "/api/buses/history": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Retrieves a history of a bus's arrivals */
+        get: {
+            parameters: {
+                query?: {
+                    bus?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "text/plain": components["schemas"]["BusArrivalDto"][];
+                        "application/json": components["schemas"]["BusArrivalDto"][];
+                        "text/json": components["schemas"]["BusArrivalDto"][];
+                    };
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/bus/reports/generate": {
         parameters: {
             query?: never;
             header?: never;
@@ -159,7 +353,44 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/Links": {
+    "/api/buses/reports/generate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Generates a CSV report of all bus arrival data */
+        get: {
+            parameters: {
+                query?: {
+                    start?: string;
+                    end?: string;
+                };
+                header?: never;
+                path?: never;
+                cookie?: never;
+            };
+            requestBody?: never;
+            responses: {
+                /** @description OK */
+                200: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content?: never;
+                };
+            };
+        };
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/links": {
         parameters: {
             query?: never;
             header?: never;
@@ -197,7 +428,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/News/Stories/Latest": {
+    "/api/news/stories/latest": {
         parameters: {
             query?: never;
             header?: never;
@@ -235,7 +466,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/News/Stories": {
+    "/api/news/stories": {
         parameters: {
             query?: never;
             header?: never;
@@ -273,7 +504,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/News/Stories/{id}": {
+    "/api/news/stories/{id}": {
         parameters: {
             query?: never;
             header?: never;
@@ -313,7 +544,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/Lunch/Week": {
+    "/api/lunch/week": {
         parameters: {
             query?: never;
             header?: never;
@@ -351,7 +582,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/Lunch/Day": {
+    "/api/lunch/day": {
         parameters: {
             query?: never;
             header?: never;
@@ -389,7 +620,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/Schedule/Day/{date}": {
+    "/api/schedules/{date}": {
         parameters: {
             query?: never;
             header?: never;
