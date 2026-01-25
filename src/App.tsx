@@ -54,7 +54,6 @@ setupIonicReact();
 
 (async () => {
   await SplashScreen.show({
-    showDuration: 2000,
     autoHide: true,
   });
 })();

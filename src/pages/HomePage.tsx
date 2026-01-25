@@ -11,6 +11,7 @@ import {
   IonTitle,
   IonToolbar,
   RefresherCustomEvent,
+  useIonViewWillEnter,
 } from "@ionic/react";
 import { useQuery } from "@tanstack/react-query";
 import { BusCard } from "../components/home/BusCard";
@@ -20,21 +21,13 @@ import { LunchCard } from "../components/home/LunchCard";
 import { $api } from "../network/client";
 import { pb } from "../network/eventsPocketbase";
 import { Event } from "../network/pocketbase/pocketbase";
-import { formatLocalDate } from "../helpers/dateFormat";
+import { formatLocalDate, getTimeGreeting } from "../helpers/dateFormat";
 import { ScheduleCard } from "../components/home/ScheduleCard";
 import { NewsCard } from "../components/home/NewsCard";
-
-function getTimeGreeting(): string {
-  const hour = new Date().getHours();
-
-  if (hour >= 5 && hour < 12) {
-    return "Good morning";
-  } else if (hour >= 12 && hour <= 17) {
-    return "Good afternoon";
-  } else {
-    return "Good evening";
-  }
-}
+import { GreetingText } from "../components/home/greeting/GreetingText";
+import { HomeHeader } from "../components/home/greeting/HomeHeader";
+import { useEffect, useState } from "react";
+import { getFavorites } from "../storage/favoriteBus";
 
 export const HomePage: React.FC = () => {
   const {
@@ -91,25 +84,40 @@ export const HomePage: React.FC = () => {
       }),
   });
 
+  const [starredBuses, setStarredBuses] = useState<string[]>([]);
+  const loadFavorites = async () => {
+    const value = await getFavorites();
+    if (value && value.length !== 0) {
+      setStarredBuses(value);
+    }
+  };
+
+  useEffect(() => {
+    loadFavorites();
+  }, []);
+
+  useIonViewWillEnter(() => {
+    loadFavorites();
+  });
+
+  const [busPositions, setBusPositions] = useState<Record<string, string>>({});
+  useEffect(() => {
+    const newPos: Record<string, string> = {};
+
+    Object.entries((busData?.data || {}))
+      .filter(([k, _]) => starredBuses.includes(k))
+      .forEach(([k, v]) => newPos[k] = v);
+
+    setBusPositions(newPos);
+  }, [busData, starredBuses]);
+
   return (
     <IonPage>
-      <IonHeader translucent>
-        <IonToolbar>
-          <IonTitle>myBCA</IonTitle>
-        </IonToolbar>
-      </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonText color="medium" className="ion-padding" style={{
-              fontSize: "1.25rem",
-              fontWeight: "bold",
-            }}>
-              myBCA
-            </IonText>
-            <IonTitle className="ion-padding-top" size="large">👋 {getTimeGreeting()}</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+        <HomeHeader
+          busPositions={busPositions}
+          lunchDay={lunchData?.data || null}
+        />
 
         <IonRefresher
           slot="fixed"
@@ -122,6 +130,9 @@ export const HomePage: React.FC = () => {
             await newsRefetch();
             event.detail.complete();
           }}
+          style={{
+            paddingTop: "calc(env(safe-area-inset-top) + 40px)",
+          }}
         >
           <IonRefresherContent></IonRefresherContent>
         </IonRefresher>
@@ -129,11 +140,6 @@ export const HomePage: React.FC = () => {
         <IonGrid className="ion-no-padding">
           <IonRow>
             <IonCol size="12" sizeMd="6">
-              <BusCard
-                busData={busData?.data ?? {}}
-                isLoading={busIsLoading}
-                error={busError}
-              />
               {scheduleData && Object.keys(scheduleData).length > 0
                 && <ScheduleCard schedule={scheduleData?.schedule || null} />}
               <LunchCard

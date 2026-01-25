@@ -4,6 +4,7 @@ import {
   InAppBrowser,
 } from "@capacitor/inappbrowser";
 import {
+  IonBackButton,
   IonButton,
   IonButtons,
   IonContent,
@@ -81,8 +82,10 @@ export const BusListPage: React.FC = () => {
   }, [favorites]);
 
   const toggleFavorite = async (bus: string) => {
-    await Haptics.impact({ style: ImpactStyle.Medium });
-    
+    try {
+      await Haptics.impact({ style: ImpactStyle.Medium });
+    } catch (ignored) { }
+
     let isDisable = false;
     setFavorites((prev) => {
       if (prev.includes(bus)) {
@@ -107,6 +110,9 @@ export const BusListPage: React.FC = () => {
     <IonPage>
       <IonHeader translucent>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton></IonBackButton>
+          </IonButtons>
           <IonTitle>Buses</IonTitle>
           <IonButtons slot="end">
             <IonButton id="buslist-options-menu-trigger">

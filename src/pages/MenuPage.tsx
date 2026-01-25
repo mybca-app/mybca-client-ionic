@@ -86,6 +86,12 @@ export const MenuPage: React.FC = () => {
           <IonItem href="https://mybca.link/docs/privacy" target="_blank">
             <IonLabel>Privacy Policy</IonLabel>
           </IonItem>
+          <IonItem href="https://commons.wikimedia.org/wiki/File:Bergen_County_Academies_main_entrance.jpg" target="_blank">
+            <IonLabel color="medium">
+              Background image on main page: "Bergen County Academies main entrance"
+              by BappleBusiness on Wikimedia Commons, licensed under CC BY-SA 4.0
+            </IonLabel>
+          </IonItem>
         </IonList>
       </IonContent>
     </IonPage>

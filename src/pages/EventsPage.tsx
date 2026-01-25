@@ -1,4 +1,6 @@
 import {
+  IonBackButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonPage,
@@ -31,6 +33,9 @@ export const EventsPage: React.FC = () => {
     <IonPage>
       <IonHeader translucent>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton></IonBackButton>
+          </IonButtons>
           <IonTitle>Events</IonTitle>
         </IonToolbar>
       </IonHeader>

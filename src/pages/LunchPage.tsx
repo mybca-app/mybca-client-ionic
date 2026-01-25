@@ -1,4 +1,6 @@
 import {
+  IonBackButton,
+  IonButtons,
   IonContent,
   IonDatetime,
   IonDatetimeButton,
@@ -64,6 +66,9 @@ export const LunchPage: React.FC = () => {
     <IonPage>
       <IonHeader translucent>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton></IonBackButton>
+          </IonButtons>
           <IonTitle>Lunch</IonTitle>
         </IonToolbar>
       </IonHeader>
