@@ -13,7 +13,7 @@ export type HomeHeaderProps = {
 export const HomeHeader: React.FC<HomeHeaderProps> = ({ now = new Date(), busPositions, lunchDay }) => {
   return (
     <div className="ion-padding" style={{
-      backgroundImage: "url(/main-screen-header-bg.jpg)",
+      backgroundImage: "url(/main-screen-header-bg.webp)",
       backgroundSize: "cover",
       backgroundPosition: "center",
       backgroundRepeat: "no-repeat",
