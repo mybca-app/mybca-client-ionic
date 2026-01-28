@@ -73,7 +73,7 @@ export const MenuPage: React.FC = () => {
           </IonItem>
           <IonItem>
             <IonLabel>License</IonLabel>
-            <IonLabel slot="end" color="medium">MIT (client)</IonLabel>
+            <IonLabel slot="end" color="medium">AGPL-3.0-or-later</IonLabel>
           </IonItem>
           <IonItem href="https://github.com/mybca-app" target="_blank">
             <IonLabel>GitHub</IonLabel>
