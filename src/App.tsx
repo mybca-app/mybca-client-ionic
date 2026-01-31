@@ -49,61 +49,68 @@ import { MenuPage } from "./pages/MenuPage";
 import { NewsPage } from "./pages/NewsPage";
 import { PermissionsBootstrap } from "./PermissionsBootstrap";
 import { LunchPage } from "./pages/LunchPage";
+import { useEffect } from "react";
 
 setupIonicReact();
 
 const queryClient = new QueryClient();
 
-const App: React.FC = () => (
-  <QueryClientProvider client={queryClient}>
-    <IonApp>
-      <PermissionsBootstrap />
+const App: React.FC = () => {
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
 
-      <IonReactRouter>
-        <IonTabs>
-          <IonRouterOutlet>
-            <Route exact path="/home">
-              <HomePage />
-            </Route>
-            <Route exact path="/buses/list" component={BusListPage} />
-            <Route exact path="/buses/:bus/detail" component={BusDetailPage} />
+  return (
+    <QueryClientProvider client={queryClient}>
+      <IonApp>
+        <PermissionsBootstrap />
 
-            <Route exact path="/news/list" component={NewsPage} />
+        <IonReactRouter>
+          <IonTabs>
+            <IonRouterOutlet>
+              <Route exact path="/home">
+                <HomePage />
+              </Route>
+              <Route exact path="/buses/list" component={BusListPage} />
+              <Route exact path="/buses/:bus/detail" component={BusDetailPage} />
 
-            <Route exact path="/events/list">
-              <EventsPage />
-            </Route>
+              <Route exact path="/news/list" component={NewsPage} />
 
-            <Route exact path="/lunch/list" component={LunchPage} />
+              <Route exact path="/events/list">
+                <EventsPage />
+              </Route>
 
-            <Route exact path="/menu" component={MenuPage} />
+              <Route exact path="/lunch/list" component={LunchPage} />
 
-            <Route exact path="/">
-              <Redirect to="/home" />
-            </Route>
-          </IonRouterOutlet>
-          <IonTabBar slot="bottom">
-            <IonTabButton tab="home" href="/home">
-              <IonIcon aria-hidden="true" icon={home} />
-              <IonLabel>Home</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="buslist" href="/buses/list">
-              <IonIcon aria-hidden="true" icon={bus} />
-              <IonLabel>Buses</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="lunch" href="/lunch/list">
-              <IonIcon aria-hidden="true" icon={fastFood} />
-              <IonLabel>Lunch</IonLabel>
-            </IonTabButton>
-            <IonTabButton tab="menu" href="/menu">
-              <IonIcon aria-hidden="true" icon={menu} />
-              <IonLabel>Menu</IonLabel>
-            </IonTabButton>
-          </IonTabBar>
-        </IonTabs>
-      </IonReactRouter>
-    </IonApp>
-  </QueryClientProvider>
-);
+              <Route exact path="/menu" component={MenuPage} />
+
+              <Route exact path="/">
+                <Redirect to="/home" />
+              </Route>
+            </IonRouterOutlet>
+            <IonTabBar slot="bottom">
+              <IonTabButton tab="home" href="/home">
+                <IonIcon aria-hidden="true" icon={home} />
+                <IonLabel>Home</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="buslist" href="/buses/list">
+                <IonIcon aria-hidden="true" icon={bus} />
+                <IonLabel>Buses</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="lunch" href="/lunch/list">
+                <IonIcon aria-hidden="true" icon={fastFood} />
+                <IonLabel>Lunch</IonLabel>
+              </IonTabButton>
+              <IonTabButton tab="menu" href="/menu">
+                <IonIcon aria-hidden="true" icon={menu} />
+                <IonLabel>Menu</IonLabel>
+              </IonTabButton>
+            </IonTabBar>
+          </IonTabs>
+        </IonReactRouter>
+      </IonApp>
+    </QueryClientProvider>
+  );
+}
 
 export default App;
