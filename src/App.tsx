@@ -52,12 +52,6 @@ import { LunchPage } from "./pages/LunchPage";
 
 setupIonicReact();
 
-(async () => {
-  await SplashScreen.show({
-    autoHide: true,
-  });
-})();
-
 const queryClient = new QueryClient();
 
 const App: React.FC = () => (
